@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # corum
 
 A new Flutter project.
@@ -15,6 +14,3 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
-=======
-# corum
->>>>>>> 6725a85ee52f7d199fe006af4650f90bfdcf130a
