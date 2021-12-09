@@ -1,4 +1,5 @@
 # C08
+[![Flutter CI/CD](https://github.com/chrisbagas/corum/actions/workflows/main.yml/badge.svg)](https://github.com/chrisbagas/corum/actions/workflows/main.yml)
 ## Nama Website: Corum
 ## Link: https://corum.herokuapp.com/ 
 ## Pengembang:
