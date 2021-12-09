@@ -2,6 +2,7 @@
 [![Flutter CI/CD](https://github.com/chrisbagas/corum/actions/workflows/main.yml/badge.svg)](https://github.com/chrisbagas/corum/actions/workflows/main.yml)
 ## Nama Website: Corum
 ## Link: https://corum.herokuapp.com/ 
+## Link Apk: https://github.com/chrisbagas/corum/releases/latest
 ## Pengembang:
 1. Ahmad Rafi Wirana - 2006595873
 2. Andhira Henrisen Sikoko - 2006596296
