@@ -16,7 +16,7 @@ Platform (Website) kami merupakan sarana bagi orang-orang yang ingin berbagi cer
 ## Daftar Modul:
 - Sign up/Sign in<br>
 Modul ini akan digunakan untuk mengidentifikasi pengguna website. Pada modul ini nanti akan dibuat model untuk data yang berisi data pengguna, yaitu nama lengkap, username/nickname, email, dan password. Modul ini akan terintegrasi dengan database django yang berasal
-dari website [Corum Website](https://corum.herokuapp.com/).
+dari website [Corum Website](https://corum.herokuapp.com/).  Proses web service yang dilakukan ialah menngimplementasikan REST API pada views.py di Django pakai Django JSON Serializer/JsonResponse, kemudian implementasi widget Flutter sesuai desain aplikasi. Terakhir, front-end mobile app dan back-end django akan diintegrasi dengan konsep async HTTP.
 - Dashboard Profil<br>
 Modul ini digunakan oleh user yang sudah login untuk memodifikasi data pada profil milik user tersebut, diantaranya mencakup nama, deskripsi diri, dan menambahkan foto profil.
 - Events<br>
