@@ -4,13 +4,13 @@
 ## Link: https://corum.herokuapp.com/ 
 ## Link Apk: https://github.com/chrisbagas/corum/releases/latest
 ## Pengembang:
-1. Ahmad Rafi Wirana - 2006595873
-2. Andhira Henrisen Sikoko - 2006596296
-3. Christopher Bagas Laiputra - 2006595822
-4. Ilhan Firka Najia - 2006596144
-5. Muhammad Hafidz Sulistyanto - 2006536965
-6. Vincent Yovian - 2006595816
-7. Visianita Widyaningrum - 2006596610
+1. Ahmad Rafi Wirana - 2006595873 (Sign in/Sign up)
+2. Andhira Henrisen Sikoko - 2006596296 (Forum)
+3. Christopher Bagas Laiputra - 2006595822 (Event Page)
+4. Ilhan Firka Najia - 2006596144 (Home Page)
+5. Muhammad Hafidz Sulistyanto - 2006536965 (Mini Survey)
+6. Vincent Yovian - 2006595816 (Blog)
+7. Visianita Widyaningrum - 2006596610 (Profil Page)
 ## Story:
 Platform (Website dan Mobile App) kami merupakan sarana bagi orang-orang yang ingin berbagi cerita seputar Covid-19. Baik membagikan pengalaman jika pernah terjangkit covid-19 sebelumnya, pengalaman yang dirasakan ketika melakukan vaksin, serta hal-hal apapun yang merupakan dampak dari pandemi covid ini. Selain itu, platform kami juga menyediakan forum bagi pengguna yang memiliki pertanyaan seputar covid-19 dimana pertanyaan tersebut bisa dijawab oleh pengguna lain yang sekiranya tahu atau pernah mengalami apa yang ditanyakan tersebut. Corum mobile merupakan integrasi mobile app dengan website [Corum Website](https://corum.herokuapp.com/).
 ## Daftar Modul:
