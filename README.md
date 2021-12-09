@@ -1,4 +1,9 @@
 # C08
+<p align="center">
+    <a href="https://github.com/chrisbagas/corum/actions">
+      <img alt="Tests Passing" src="https://github.com/chrisbagas/corum/workflows/Test/badge.svg" />
+    </a>
+</p>
 ## Nama Website: Corum
 ## Link: https://corum.herokuapp.com/ 
 ## Pengembang:
