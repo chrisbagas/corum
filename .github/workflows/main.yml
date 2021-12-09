@@ -42,8 +42,34 @@ jobs:
       # Build apk.
       - run: flutter build apk
 
-      # Upload generated apk to the artifacts.
-      - uses: actions/upload-artifact@v1
+      - uses: benjlevesque/short-sha@v1.2
+        id: short-sha
         with:
-          name: release-apk
-          path: build/app/outputs/apk/release/app-release.apk
+          length: 6
+
+      - run: echo $SHA
+        env: 
+          SHA: ${{ steps.short-sha.outputs.sha }}
+
+      # Upload generated apk to the artifacts.
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.SHA }}
+          release_name: ${{ env.SHA }}
+          draft: false
+          prerelease: false
+          
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing its ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: build/app/outputs/apk/release/app-release.apk
+          asset_name: app-release.apk
+          asset_content_type: application/apk
