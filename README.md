@@ -29,7 +29,7 @@ Pada modul ini akan ditampilkan kumpulan forum yang berisi diskusi antar penggun
 Modul ini menampilkan survei kecil-kecilan untuk mengetahui preferensi tiap pengguna terhadap sebuah isu. Pengguna yang sudah melakukan login dapat membuat survei mereka sendiri jika mereka ingin mengetahui preferensi pengguna lainnya terhadap suatu topik. Survei yang dibuat diharapkan tetap sesuai dengan tema yaitu berkaitan dengan pandemi covid-19.
 Untuk mengintegrasikan website dengan Flutter pada mobile-app akan dibuat sebuah API yang dapat mengembalikan response dalam bentuk JSON dengan method GET untuk dapat menampilkan data survey yang tersimpan di dalam database website serta mengirim input dengan method POST berupa survey baru yang dibuat oleh pengguna ke URL pada django service untuk kemudian disimpan ke dalam database.
 - Home Page<br>
-Modul ini merupakan halaman utama yang akan menampilkan deskripsi singkat mengenai website corum. Modul ini juga memiliki form feedback yang dapat digunakan oleh pengguna untuk memberikan feedback terhadap website corum.
+Modul ini merupakan halaman utama yang akan menampilkan deskripsi singkat mengenai website corum. Modul ini juga memiliki form feedback yang dapat digunakan oleh pengguna untuk memberikan feedback terhadap website corum.  Modul ini juga akan disesuaikan UI nya pada mobile phone. Implementasi integrasi web service yang dilakukan adalah dengan menggunakan GET untuk mendapatkan data pada database website dan mengirimkan feedback yang dibuat di mobile secara asyncronous, Json response juga digunakan untuk mereturn Json yang berisikan data dari form feedback yang telah dibuat
 ## Persona:
 #### Guest User
 - Mengunjungi Home page
