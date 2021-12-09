@@ -12,10 +12,11 @@
 6. Vincent Yovian - 2006595816
 7. Visianita Widyaningrum - 2006596610
 ## Story:
-Platform (Website) kami merupakan sarana bagi orang-orang yang ingin berbagi cerita seputar Covid-19. Baik membagikan pengalaman jika pernah terjangkit covid-19 sebelumnya, pengalaman yang dirasakan ketika melakukan vaksin, serta hal-hal apapun yang merupakan dampak dari pandemi covid ini. Selain itu, platform kami juga menyediakan forum bagi pengguna yang memiliki pertanyaan seputar covid-19 dimana pertanyaan tersebut bisa dijawab oleh pengguna lain yang sekiranya tahu atau pernah mengalami apa yang ditanyakan tersebut.
+Platform (Website) kami merupakan sarana bagi orang-orang yang ingin berbagi cerita seputar Covid-19. Baik membagikan pengalaman jika pernah terjangkit covid-19 sebelumnya, pengalaman yang dirasakan ketika melakukan vaksin, serta hal-hal apapun yang merupakan dampak dari pandemi covid ini. Selain itu, platform kami juga menyediakan forum bagi pengguna yang memiliki pertanyaan seputar covid-19 dimana pertanyaan tersebut bisa dijawab oleh pengguna lain yang sekiranya tahu atau pernah mengalami apa yang ditanyakan tersebut. Corum mobile merupakan integrasi mobile app dengan website (Corum Website)[https://corum.herokuapp.com/].
 ## Daftar Modul:
 - Sign up/Sign in<br>
-Modul ini akan digunakan untuk mengidentifikasi pengguna website. Pada modul ini nanti akan dibuat model untuk data yang berisi data pengguna, yaitu nama lengkap, username/nickname, email, dan password. Sign up / sign in form ini juga bisa menggunakan akun Google atau akun lainnya untuk memasuki website agar data terintegrasi dan akses ke website sangat mudah.
+Modul ini akan digunakan untuk mengidentifikasi pengguna website. Pada modul ini nanti akan dibuat model untuk data yang berisi data pengguna, yaitu nama lengkap, username/nickname, email, dan password. Modul ini akan terintegrasi dengan database django yang berasal
+dari website (Corum Website)[https://corum.herokuapp.com/].
 - Dashboard Profil<br>
 Modul ini digunakan oleh user yang sudah login untuk memodifikasi data pada profil milik user tersebut, diantaranya mencakup nama, deskripsi diri, dan menambahkan foto profil.
 - Events<br>
