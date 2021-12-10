@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import './card_list.dart';
 import './search_bar.dart';
 import './post_form.dart';
@@ -19,10 +18,6 @@ class _IndexPageState extends State<IndexPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //systemOverlayStyle: const SystemUiOverlayStyle(
-        //  statusBarColor: Color(0x00000000),
-        //  systemNavigationBarColor: Color(0xFF000000),
-        //),
         actions: [
           IconButton(
             onPressed: () {
