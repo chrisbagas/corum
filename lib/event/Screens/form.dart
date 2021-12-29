@@ -1,8 +1,7 @@
-// @dart=2.9
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:intl/intl_browser.dart';
+import 'package:intl/intl_standalone.dart';
 
 class formstateful extends StatefulWidget {
   @override
@@ -15,11 +14,11 @@ class formstate extends State<formstateful> {
   TextEditingController intialtimeval = TextEditingController();
   TimeOfDay selectedTime = TimeOfDay.now();
   Future _selectDate() async {
-    DateTime picked = await showDatePicker(
+    final picked = await showDatePicker(
         context: context,
         initialDate: new DateTime.now(),
         firstDate: new DateTime(2020),
-        lastDate: new DateTime(2030));
+        lastDate: new DateTime(2030)) as DateTime;
     if (picked != null)
       setState(() => {intialdateval.text = DateFormat.yMd().format(picked)});
   }
@@ -28,15 +27,10 @@ class formstate extends State<formstateful> {
   //   OpenFile.open(file.path);
   // }
   Future<void> _selectTime(BuildContext context) async {
-    final TimeOfDay picked_s = await showTimePicker(
-        context: context,
-        initialTime: selectedTime,
-        builder: (BuildContext context, Widget child) {
-          return MediaQuery(
-            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
-            child: child,
-          );
-        });
+    final picked_s = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+    );
 
     if (picked_s != null && picked_s != selectedTime)
       setState(() {
@@ -70,10 +64,12 @@ class formstate extends State<formstateful> {
                           borderRadius: new BorderRadius.circular(5.0)),
                     ),
                     validator: (value) {
-                      if (value.isEmpty) {
-                        return 'Title tidak boleh kosong';
+                      if (value != null) {
+                        if (value.isEmpty) {
+                          return 'Title tidak boleh kosong';
+                        }
+                        return null;
                       }
-                      return null;
                     },
                   ),
                 ),
@@ -87,7 +83,7 @@ class formstate extends State<formstateful> {
                     },
                     maxLines: 1,
                     validator: (value) {
-                      if (value.isEmpty || value.length < 1) {
+                      if (value!.isEmpty || value.length < 1) {
                         return 'Date tidak boleh kosong';
                       }
                       return null;
@@ -110,7 +106,7 @@ class formstate extends State<formstateful> {
                     },
                     maxLines: 1,
                     validator: (value) {
-                      if (value.isEmpty) {
+                      if (value!.isEmpty) {
                         return 'Time tidak boleh kosong';
                       }
                       return null;
@@ -133,7 +129,7 @@ class formstate extends State<formstateful> {
                           borderRadius: new BorderRadius.circular(5.0)),
                     ),
                     validator: (value) {
-                      if (value.isEmpty) {
+                      if (value!.isEmpty) {
                         return 'Media tidak boleh kosong';
                       }
                       return null;
@@ -150,7 +146,7 @@ class formstate extends State<formstateful> {
                           borderRadius: new BorderRadius.circular(5.0)),
                     ),
                     validator: (value) {
-                      if (value.isEmpty) {
+                      if (value!.isEmpty) {
                         return 'Description tidak boleh kosong';
                       }
                       return null;
@@ -179,7 +175,7 @@ class formstate extends State<formstateful> {
                   ),
                   color: Colors.blue,
                   onPressed: () {
-                    if (_formKey.currentState.validate()) {
+                    if (_formKey.currentState!.validate()) {
                       Navigator.pop(context);
                     }
                   },

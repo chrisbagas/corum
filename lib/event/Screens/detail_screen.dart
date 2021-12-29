@@ -1,4 +1,3 @@
-// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:corum/event/models/events.dart';
 import 'package:corum/event/screens/body_home.dart';
@@ -6,7 +5,7 @@ import 'package:corum/event/screens/body_home.dart';
 class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final Events event = ModalRoute.of(context).settings.arguments;
+    final event = ModalRoute.of(context)!.settings.arguments as Events;
     return Container(
         color: Color(0xffC1FFD7),
         child: Card(
