@@ -1,8 +1,10 @@
 import 'dart:convert' as convert;
-import 'package:corum/api/GetCookies.dart';
-import 'package:corum/screens/login_page.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'package:corum/api/GetCookies.dart';
+import 'package:corum/authentication/login_page.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);

@@ -1,6 +1,5 @@
 import 'package:corum/api/GetCookies.dart';
-import 'package:corum/screens/homepage.dart';
-import 'package:corum/screens/signup_page.dart';
+import 'package:corum/authentication/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 
@@ -158,7 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ));
 
                               Navigator.pushReplacementNamed(
-                                  context, HomePage.routeName);
+                                  context, HomePage.routeName); // buat navigasi ke home
                             } else {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
