@@ -39,7 +39,7 @@ class StartingPage extends StatelessWidget {
                     fontWeight: FontWeight.w400),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/signup_page');
+                Navigator.pushNamed(context, '/register');
               },
               child: const Text('SIGN UP'),
             ),
@@ -57,12 +57,14 @@ class StartingPage extends StatelessWidget {
                       fontWeight: FontWeight.w400),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/login_page');
+                  Navigator.pushNamed(context, '/login');
                 },
                 child: const Text('LOG IN')),
             const SizedBox(height: 15),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                 Navigator.pushNamed(context, '/home');
+              },
               child: const Text(
                 'log in as a guest',
                 style: TextStyle(
