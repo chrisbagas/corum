@@ -56,8 +56,8 @@ class SignupPage extends StatelessWidget {
                             Icons.email_outlined, "Email", false, true),
                         _buildTextFields(
                             Icons.lock_outline, "Password", true, false),
-                        _buildTextFields(
-                            Icons.lock_outline, "Confirm Password", true, false),
+                        _buildTextFields(Icons.lock_outline, "Confirm Password",
+                            true, false),
                       ],
                     ),
                   ),
@@ -65,49 +65,47 @@ class SignupPage extends StatelessWidget {
                     height: 10,
                   ),
                   ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Theme.of(context).secondaryHeaderColor,
-                        fixedSize: const Size(240, 50),
-                        shape: const StadiumBorder(),
-                        textStyle: const TextStyle(
-                            fontFamily: 'DMSans',
-                            color: Color.fromRGBO(255, 255, 255, 1),
-                            fontSize: 26,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      onPressed: () {
-                        const snackBar = SnackBar(
-                          content: Text('Create Account Succesful'),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      },
-                      child: const Text(
-                        "Create Account",
-                      ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Theme.of(context).secondaryHeaderColor,
+                      fixedSize: const Size(240, 50),
+                      shape: const StadiumBorder(),
+                      textStyle: const TextStyle(
+                          fontFamily: 'DMSans',
+                          color: Color.fromRGBO(255, 255, 255, 1),
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold),
                     ),
+                    onPressed: () {
+                      const snackBar = SnackBar(
+                        content: Text('Create Account Succesful'),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    },
+                    child: const Text(
+                      "Create Account",
+                    ),
+                  ),
                   const SizedBox(
                     height: 10,
                   ),
                   const Text(
-                      "Already have an account?",
-                      style: TextStyle(
+                    "Already have an account?",
+                    style: TextStyle(
                         fontSize: 15,
                         fontFamily: 'DMSans',
-                        fontWeight: FontWeight.bold
-                      ),
-                    ),
-                  TextButton(
-                    onPressed: (){
-                      Navigator.pushNamed(context, '/login_page');
-                    }, 
-                    child: const Text(
-                      "log in",
-                      style: TextStyle(
-                        fontFamily: 'DMSans',
-                        fontSize: 22,
-                      ),
-                    )
+                        fontWeight: FontWeight.bold),
                   ),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/login_page');
+                      },
+                      child: const Text(
+                        "log in",
+                        style: TextStyle(
+                          fontFamily: 'DMSans',
+                          fontSize: 22,
+                        ),
+                      )),
                 ],
               ),
             ),

@@ -52,7 +52,8 @@ class LoginPage extends StatelessWidget {
                       children: <Widget>[
                         _buildTextFields(Icons.account_box_outlined, "Username",
                             false, false),
-                        _buildTextFields(Icons.lock_outline, "Password", true, false),
+                        _buildTextFields(
+                            Icons.lock_outline, "Password", true, false),
                       ],
                     ),
                   ),
@@ -60,26 +61,26 @@ class LoginPage extends StatelessWidget {
                     height: 10,
                   ),
                   ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Theme.of(context).secondaryHeaderColor,
-                        fixedSize: const Size(140, 50),
-                        shape: const StadiumBorder(),
-                        textStyle: const TextStyle(
-                            fontFamily: 'DMSans',
-                            color: Color.fromRGBO(255, 255, 255, 1),
-                            fontSize: 26,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      onPressed: () {
-                        const snackBar = SnackBar(
-                          content: Text('Login Succesful'),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      },
-                      child: const Text(
-                        "Submit",
-                      ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Theme.of(context).secondaryHeaderColor,
+                      fixedSize: const Size(140, 50),
+                      shape: const StadiumBorder(),
+                      textStyle: const TextStyle(
+                          fontFamily: 'DMSans',
+                          color: Color.fromRGBO(255, 255, 255, 1),
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold),
                     ),
+                    onPressed: () {
+                      const snackBar = SnackBar(
+                        content: Text('Login Succesful'),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    },
+                    child: const Text(
+                      "Submit",
+                    ),
+                  ),
                   const SizedBox(
                     height: 10,
                   ),
@@ -92,17 +93,17 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/signup_page');
-                      },
-                      child: const Text(
-                        "sign up",
-                        style: TextStyle(
-                          fontFamily: 'DMSans',
-                          fontSize: 22,
-                        ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/signup_page');
+                    },
+                    child: const Text(
+                      "sign up",
+                      style: TextStyle(
+                        fontFamily: 'DMSans',
+                        fontSize: 22,
                       ),
                     ),
+                  ),
                 ],
               ),
             ),
