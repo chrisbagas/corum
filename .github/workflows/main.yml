@@ -31,11 +31,9 @@ jobs:
       # Get flutter dependencies.
       - run: flutter pub get
       
-      # Check for any formatting issues in the code.
-      - run: flutter format --set-exit-if-changed -- --line-length 140 .
       
       # Statically analyze the Dart code for any errors.
-      - run: flutter analyze .
+      - run: flutter analyze --no-fatal-infos --no-fatal-warnings .
 
       # Run widget tests for our flutter project.
       #    - run: flutter test
