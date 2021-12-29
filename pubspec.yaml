@@ -119,7 +119,7 @@ flutter:
         - asset: assets/fonts/lato/Lato-ThinItalic.ttf
     - family: Playfair Display
       fonts:
-        - asset: assets/fonts/playfair_display/PlayfairDIsplay-Black.ttf
+        # - asset: assets/fonts/playfair_display/PlayfairDIsplay-Black.ttf
         - asset: assets/fonts/playfair_display/PlayfairDIsplay-BlackItalic.ttf
         - asset: assets/fonts/playfair_display/PlayfairDIsplay-Bold.ttf
         - asset: assets/fonts/playfair_display/PlayfairDIsplay-BoldItalic.ttf
