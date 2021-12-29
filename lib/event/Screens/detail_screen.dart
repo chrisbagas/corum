@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:corum/event/models/events.dart';
-import 'package:corum/event/screens/body_home.dart';
 
 class DetailsScreen extends StatelessWidget {
   @override
