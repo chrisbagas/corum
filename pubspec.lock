@@ -156,6 +156,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+<<<<<<< HEAD
   image_picker:
     dependency: "direct main"
     description:
@@ -177,6 +178,10 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.1"
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 6bdfad4c0e16212b51e0cfbadf3e172bdb893e32
   intl:
     dependency: "direct main"
     description:
@@ -184,6 +189,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.17.0"
+>>>>>>> d5ac1441d4ee9ca394a8fc0e2d66a81f1a546f6d
   js:
     dependency: transitive
     description:
@@ -212,6 +218,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
+<<<<<<< HEAD
+  nested:
+    dependency: transitive
+    description:
+      name: nested
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
+=======
   open_file:
     dependency: "direct main"
     description:
@@ -219,6 +234,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.2.1"
+>>>>>>> d5ac1441d4ee9ca394a8fc0e2d66a81f1a546f6d
   path:
     dependency: transitive
     description:
@@ -296,6 +312,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
+  provider:
+    dependency: "direct main"
+    description:
+      name: provider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "6.0.1"
   rive:
     dependency: "direct main"
     description:
@@ -303,6 +326,62 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.7.33"
+  shared_preferences:
+    dependency: "direct main"
+    description:
+      name: shared_preferences
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.11"
+  shared_preferences_android:
+    dependency: transitive
+    description:
+      name: shared_preferences_android
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.9"
+  shared_preferences_ios:
+    dependency: transitive
+    description:
+      name: shared_preferences_ios
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.8"
+  shared_preferences_linux:
+    dependency: transitive
+    description:
+      name: shared_preferences_linux
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.3"
+  shared_preferences_macos:
+    dependency: transitive
+    description:
+      name: shared_preferences_macos
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2"
+  shared_preferences_platform_interface:
+    dependency: transitive
+    description:
+      name: shared_preferences_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
+  shared_preferences_web:
+    dependency: transitive
+    description:
+      name: shared_preferences_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2"
+  shared_preferences_windows:
+    dependency: transitive
+    description:
+      name: shared_preferences_windows
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.3"
   sky_engine:
     dependency: transitive
     description: flutter

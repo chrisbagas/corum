@@ -1,5 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter/material.dart';
+
+import 'package:corum/api/GetCookies.dart';
+import 'package:corum/authentication/login_page.dart';
+import 'package:corum/authentication/signup_page.dart';
+
 import 'blog/blog.dart';
 import 'event/Screens/body_home.dart';
 import 'temp.dart';
