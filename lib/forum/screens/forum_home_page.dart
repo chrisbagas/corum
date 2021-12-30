@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:forum_corum/forum/screens/create_forum.dart';
-import 'package:forum_corum/forum/widgets/forum_card_list.dart';
-import 'package:forum_corum/forum/models/forum_model.dart';
-// import 'package:forum_corum/forum/models/forum_model_alt.dart';
+import 'package:corum/forum/screens/create_forum.dart';
+import 'package:corum/forum/widgets/forum_card_list.dart';
+import 'package:corum/forum/models/forum_model.dart';
+import 'package:provider/provider.dart';
+// import 'package:corum/forum/models/forum_model_alt.dart';
+import 'package:corum/api/GetCookies.dart';
 
 class ForumHome extends StatefulWidget {
   const ForumHome({Key? key}) : super(key: key);
@@ -17,22 +19,34 @@ class _ForumHomeState extends State<ForumHome> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<ConnectNetworkService>();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Forum"),
+        backgroundColor: Colors.greenAccent.shade200,
       ),
-      body: Center(
-        child: CardList(forums: forums),
+      body: Padding(
+        padding: const EdgeInsets.only(bottom: 68),
+        child: Center(
+          child: CardList(forums: forums),
+        ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const ForumForm()),
-          );
-        },
-        tooltip: 'Add forum',
-        child: const Icon(Icons.add),
+      floatingActionButton: Visibility(
+        visible: request.loggedIn,
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 80),
+          child: FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ForumForm()),
+              );
+            },
+            tooltip: 'Add forum',
+            child: const Icon(Icons.add),
+          ),
+        ),
       ),
     );
   }

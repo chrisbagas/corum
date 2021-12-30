@@ -1,7 +1,10 @@
+import 'package:corum/api/GetCookies.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:forum_corum/forum/models/forum_model.dart';
-import 'dart:convert';
+import 'package:provider/provider.dart';
+import 'dart:convert' as convert;
+// import 'package:http/http.dart' as http;
+// import 'package:forum_corum/forum/models/forum_model.dart';
+// import 'package:corum/forum/models/forum_model.dart';
 
 class ForumForm extends StatefulWidget {
   const ForumForm({Key? key}) : super(key: key);
@@ -12,18 +15,21 @@ class ForumForm extends StatefulWidget {
 }
 
 class _ForumFormState extends State<ForumForm> {
-  final _key = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   String _title = "";
   String _body = "";
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<ConnectNetworkService>();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Create a new forum'),
+        // backgroundColor: Colors.greenAccent.shade200,
       ),
       body: Form(
-        key: _key,
+        key: _formKey,
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(
@@ -36,8 +42,9 @@ class _ForumFormState extends State<ForumForm> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: TextFormField(
-                    style: Theme.of(context).textTheme.bodyText1,
+                    // style: Theme.of(context).textTheme.bodyText1,
                     decoration: const InputDecoration(
+                      icon: Icon(Icons.text_fields_outlined),
                       labelText: 'Title',
                       hintText: 'Write the title for your forum post here.',
                     ),
@@ -64,8 +71,9 @@ class _ForumFormState extends State<ForumForm> {
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: TextFormField(
                     maxLines: 12,
-                    style: Theme.of(context).textTheme.bodyText2,
+                    // style: Theme.of(context).textTheme.bodyText2,
                     decoration: const InputDecoration(
+                      icon: Icon(Icons.notes),
                       alignLabelWithHint: true,
                       labelText: 'Body',
                       hintText: 'Write your forum here.',
@@ -91,20 +99,28 @@ class _ForumFormState extends State<ForumForm> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    if (_key.currentState!.validate()) {
-                      // const url = 'http://localhost:8000/forum/api';
-                      // final response = await http.post(
-                      //   Uri.parse(url),
-                      //   body: convert. {
-                      //     "title": _title,
-                      //     "body": _body,
-                      //     "author": "author"
-                      //   },
-                      // );
+                    if (_formKey.currentState!.validate()) {
+                      const url =
+                          "http://corum.herokuapp.com/forum/create-flutter";
+                      final response = await request.postJson(
+                          url,
+                          convert.jsonEncode(<String, String>{
+                            'title': _title.toString(),
+                            'body': _body.toString(),
+                          }));
 
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('New forum is created!')),
-                      );
+                      if (response['status'] == 'success') {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text('New forum is created!')),
+                        );
+                        Navigator.pop(context);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text('An error has occured.')),
+                        );
+                      }
                     }
                   },
                   child: const Text('Save'),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:forum_corum/forum/screens/forum_detail_page.dart';
+import 'package:corum/forum/screens/forum_detail_page.dart';
 // import '../models/forum_model.dart';
 import 'package:timeago/timeago.dart' as timeago;
-// import 'package:forum_corum/forum/models/forum_model_alt.dart';
-import 'package:forum_corum/forum/models/forum_model.dart';
+// import 'package:corum/forum/models/forum_model_alt.dart';
+import 'package:corum/forum/models/forum_model.dart';
 
 // import './card_header.dart';
 

@@ -40,8 +40,8 @@ class Forum {
 }
 
 Future<List<Forum>> fetchForums() async {
-  // const url = 'https://corum.herokuapp.com/forum/api';
-  const url = 'http://localhost:8000/forum/api';
+  const url = 'https://corum.herokuapp.com/forum/api';
+  // const url = 'http://localhost:8000/forum/api';
 
   final response = await http.get(Uri.parse(url));
 
