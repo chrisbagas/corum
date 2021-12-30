@@ -5,51 +5,54 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final event = ModalRoute.of(context)!.settings.arguments as Events;
-    return Container(
-        color: Color(0xffC1FFD7),
-        child: Card(
-          color: Theme.of(context).primaryColor,
-          clipBehavior: Clip.antiAlias,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
-          ),
-          child: InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Ink.image(
-                  image: AssetImage(
-                    event.image,
-                  ),
-                  height: 300,
-                  fit: BoxFit.fill,
+    return Scaffold(
+        resizeToAvoidBottomInset: false, // set it to false
+        body: SingleChildScrollView(
+          child: Container(
+              color: Color(0xffC1FFD7),
+              child: Card(
+                color: Theme.of(context).primaryColor,
+                clipBehavior: Clip.antiAlias,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(24),
                 ),
-                Padding(
-                    padding: EdgeInsets.all(20),
-                    child: Text(
-                      event.title,
-                      textAlign: TextAlign.start,
-                      style: TextStyle(fontSize: 30),
-                    )),
-                Padding(
-                    padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    child: Text(event.date, textAlign: TextAlign.start)),
-                Padding(
-                    padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    child: Text(event.time, textAlign: TextAlign.start)),
-                Padding(
-                    padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    child: Text(event.media, textAlign: TextAlign.start)),
-                Padding(
-                    padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                    child: Text(event.description, textAlign: TextAlign.start)),
-              ],
-            ),
-          ),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.network(
+                        event.image2,
+                        height: 400,
+                        fit: BoxFit.cover,
+                      ),
+                      Padding(
+                          padding: EdgeInsets.all(20),
+                          child: Text(
+                            event.title,
+                            textAlign: TextAlign.start,
+                            style: TextStyle(fontSize: 30),
+                          )),
+                      Padding(
+                          padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          child: Text(event.date, textAlign: TextAlign.start)),
+                      Padding(
+                          padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          child: Text(event.time, textAlign: TextAlign.start)),
+                      Padding(
+                          padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          child: Text(event.media, textAlign: TextAlign.start)),
+                      Padding(
+                          padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          child: Text(event.description,
+                              textAlign: TextAlign.start)),
+                    ],
+                  ),
+                ),
+              )),
         ));
   }
 }
