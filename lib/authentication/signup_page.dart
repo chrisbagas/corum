@@ -8,7 +8,7 @@ import 'package:corum/authentication/login_page.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
-  static const routeName = '/register';
+  static const routeName = '/signup_page';
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -32,7 +32,7 @@ class _SignUpPageState extends State<SignUpPage> {
       child: Stack(
         children: <Widget>[
           Scaffold(
-            backgroundColor: Theme.of(context).primaryColor,
+            backgroundColor: Theme.of(context).secondaryHeaderColor,
             body: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -1,11 +1,12 @@
 import 'package:corum/api/GetCookies.dart';
 import 'package:corum/authentication/signup_page.dart';
+import 'package:corum/main.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
-  static const routeName = '/login';
+  static const routeName = '/login_page';
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -33,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Stack(
           children: <Widget>[
             Scaffold(
-              backgroundColor: Theme.of(context).primaryColor,
+              backgroundColor: Theme.of(context).secondaryHeaderColor,
               body: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -155,9 +156,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   .showSnackBar(const SnackBar(
                                 content: Text("Akun telah berhasil masuk!"),
                               ));
-
                               Navigator.pushReplacementNamed(
-                                  context, HomePage.routeName); // buat navigasi ke home
+                                  context, MyHomePage.routeName); // buat navigasi ke home
                             } else {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
