@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:corum/api/GetCookies.dart';
 import 'package:corum/authentication/login_page.dart';
 import 'package:corum/authentication/signup_page.dart';
+import 'package:provider/provider.dart';
 
+import 'authentication/starting_page.dart';
 import 'blog/blog.dart';
 import 'event/Screens/body_home.dart';
 import 'temp.dart';
@@ -18,19 +20,32 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: appTitle,
-      theme: ThemeData(
-          primaryColor: Color(0xff4FE8B4),
-          primarySwatch: Colors.green,
-          fontFamily: 'Poppins'),
-      home: MyHomePage(title: appTitle),
+    return Provider(
+      create: (_) {
+        ConnectNetworkService cookieRequest = ConnectNetworkService();
+        return cookieRequest;
+      },
+      child: MaterialApp(
+        title: appTitle,
+        theme: ThemeData(
+            primaryColor: Color(0xff4FE8B4),
+            secondaryHeaderColor: const Color.fromRGBO(101, 204, 184, 1),
+            primarySwatch: Colors.green,
+            fontFamily: 'Poppins'),
+        home: const StartingPage(),
+        routes: {
+          SignUpPage.routeName: (ctx) => const SignUpPage(),
+          LoginScreen.routeName: (ctx) => const LoginScreen(),
+          MyHomePage.routeName: (ctx) => MyHomePage(title: appTitle)
+        },
+      ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, required this.title}) : super(key: key);
+  static const routeName = '/home';
   final String title;
   @override
   _MyHomePageState createState() => _MyHomePageState();
