@@ -29,19 +29,24 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_fonts: ^2.1.0
+  
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  http: ^0.13.4
   rive: ^0.7.33
   intl: ^0.17.0
   file_picker: ^4.1.3
-  open_file: ^3.2.1
+  open_file: ^3.2.1 
+  curved_navigation_bar: ^1.0.1 
+  image_picker: ^0.8.4+4
+  google_fonts: ^2.1.0
+  http: ^0.13.4
+  provider: ^6.0.1
+  shared_preferences: ^2.0.11
 
-dev_dependencies:
+dev_dependencies: 
   flutter_test:
     sdk: flutter
 
@@ -116,14 +121,14 @@ flutter:
         - asset: assets/fonts/lato/Lato-Regular.ttf
         - asset: assets/fonts/lato/Lato-Thin.ttf
         - asset: assets/fonts/lato/Lato-ThinItalic.ttf
-    - family: Playfair Display
-      fonts:
-        - asset: assets/fonts/playfair_display/PlayfairDIsplay-Black.ttf
-        - asset: assets/fonts/playfair_display/PlayfairDIsplay-BlackItalic.ttf
-        - asset: assets/fonts/playfair_display/PlayfairDIsplay-Bold.ttf
-        - asset: assets/fonts/playfair_display/PlayfairDIsplay-BoldItalic.ttf
-        - asset: assets/fonts/playfair_display/PlayfairDIsplay-Italic.ttf
-        - asset: assets/fonts/playfair_display/PlayfairDIsplay-Regular.ttf
+    # - family: Playfair Display
+    #   fonts:
+        # - asset: assets/fonts/playfair_display/PlayfairDIsplay-Black.ttf
+        # - asset: assets/fonts/playfair_display/PlayfairDIsplay-BlackItalic.ttf
+        # - asset: assets/fonts/playfair_display/PlayfairDIsplay-Bold.ttf
+        # - asset: assets/fonts/playfair_display/PlayfairDIsplay-BoldItalic.ttf
+        # - asset: assets/fonts/playfair_display/PlayfairDIsplay-Italic.ttf
+        # - asset: assets/fonts/playfair_display/PlayfairDIsplay-Regular.ttf
     - family: Kite One
       fonts:
         - asset: assets/fonts/kite_one/KiteOne-Regular.ttf

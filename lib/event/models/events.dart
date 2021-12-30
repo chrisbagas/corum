@@ -1,66 +1,56 @@
-import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
 
 class Events {
-  String image, title, date, time, media, description;
-  int id;
-  Events(
-      {required this.id,
-      required this.title,
-      required this.date,
-      required this.time,
-      required this.media,
-      required this.description,
-      required this.image});
+  String image1,
+      image2,
+      title,
+      url,
+      date,
+      time,
+      media,
+      tipe,
+      description,
+      created;
+  Events({
+    required this.title,
+    required this.date,
+    required this.time,
+    required this.media,
+    required this.tipe,
+    required this.url,
+    required this.description,
+    required this.image1,
+    required this.image2,
+    required this.created,
+  });
+
+  factory Events.fromJson(Map<String, dynamic> json) {
+    return Events(
+        title: json['Nama'],
+        date: json['Tanggal'],
+        time: json['Waktu'],
+        media: json['Media'],
+        tipe: json['Tipe'],
+        url: json['url'],
+        description: json['Deskripsi'],
+        image1: "https://corumbucket.s3.amazonaws.com/${json['Card_Image']}",
+        image2: "https://corumbucket.s3.amazonaws.com/${json['Page_Image']}",
+        created: json['created']);
+  }
 }
 
-List<Events> events = [
-  Events(
-    id: 0,
-    title: "dummy",
-    description: "",
-    date: "dummy",
-    time: "dummy",
-    media: "dummy",
-    image: "images/covid.jpg",
-  ),
-  Events(
-    id: 1,
-    title: "Covid Talk",
-    description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-    date: "15/01/2022",
-    time: "15:00",
-    media: "Zoom",
-    image: "images/covid.jpg",
-  ),
-  Events(
-    id: 2,
-    title: "Keep Clean",
-    description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-    date: "10/12/2021",
-    time: "12:00",
-    media: "Google Meet",
-    image: "images/handsanitizer.jpg",
-  ),
-  Events(
-    id: 3,
-    title: "Keep Your Distance",
-    description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-    date: "30/11/2021",
-    time: "16:00",
-    media: "Zoom",
-    image: "images/safedistance.jpg",
-  ),
-  Events(
-    id: 4,
-    title: "Importance of Vaccine",
-    description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-    date: "25/11/2021",
-    time: "09:30",
-    media: "Google Meet",
-    image: "images/vaccine.jpg",
-  ),
-];
+Future<List<Events>> fetchPosts() async {
+  const url = 'https://corum.herokuapp.com/event/json';
+
+  final response = await http.get(Uri.parse(url));
+  List<dynamic> extractedData = jsonDecode(response.body);
+  List<Events> events = [];
+
+  for (dynamic d in extractedData) {
+    events.add(Events.fromJson(d['fields']));
+  }
+
+  return events;
+}
