@@ -1,10 +1,14 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:convert' as convert;
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/intl_standalone.dart';
+import 'package:corum/api/GetCookies.dart';
+import 'package:provider/provider.dart';
 
 class formstateful extends StatefulWidget {
   @override
@@ -66,11 +70,13 @@ class formstate extends State<formstateful> {
   String time = '';
   String media = '';
   String url = '';
+  String tipe = '';
   String description = '';
   File? image1;
   File? image2;
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<ConnectNetworkService>();
     return Scaffold(
         body: Form(
       key: _formKey,
@@ -115,12 +121,35 @@ class formstate extends State<formstateful> {
                     style: TextStyle(color: Colors.white),
                   ),
                   color: Colors.blue,
-                  onPressed: () {
+                  onPressed: () async {
                     final isValid = _formKey.currentState!.validate();
                     if (isValid) {
                       _formKey.currentState!.save();
-                      final message = 'Title: $title';
-                      print(message);
+
+                      final String base64file1 =
+                          base64Encode(image1!.readAsBytesSync());
+                      final String fileName1 = image1!.path.split("/").last;
+                      final String base64file2 =
+                          base64Encode(image2!.readAsBytesSync());
+                      final String fileName2 = image2!.path.split("/").last;
+                      final response = await request.post(
+                          "https://corum.herokuapp.com/event/post",
+                          convert.jsonEncode(<String, String>{
+                            'title': title,
+                            'tanggal': date,
+                            'waktu': time,
+                            'media': media,
+                            'tipe': tipe,
+                            'Url': url,
+                            'deskripsi': description,
+                            'file1': base64file1,
+                            'name1': fileName1,
+                            'file2': base64file2,
+                            'name2': fileName2,
+                          }));
+                      if (response['status'] == 'success') {
+                        Navigator.pop(context);
+                      }
                     }
                   }),
             ],

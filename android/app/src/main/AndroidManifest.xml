@@ -4,7 +4,7 @@
    <application
         android:label="corum"
         android:requestLegacyExternalStorage="true"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/corum">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
