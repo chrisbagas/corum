@@ -156,7 +156,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
-<<<<<<< HEAD
   image_picker:
     dependency: "direct main"
     description:
@@ -178,10 +177,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.1"
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 6bdfad4c0e16212b51e0cfbadf3e172bdb893e32
   intl:
     dependency: "direct main"
     description:
@@ -189,7 +184,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.17.0"
->>>>>>> d5ac1441d4ee9ca394a8fc0e2d66a81f1a546f6d
   js:
     dependency: transitive
     description:
@@ -218,7 +212,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
-<<<<<<< HEAD
   nested:
     dependency: transitive
     description:
@@ -226,7 +219,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
-=======
   open_file:
     dependency: "direct main"
     description:
@@ -234,7 +226,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.2.1"
->>>>>>> d5ac1441d4ee9ca394a8fc0e2d66a81f1a546f6d
   path:
     dependency: transitive
     description:
@@ -318,7 +309,7 @@ packages:
       name: provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.1"
+    version: "6.0.2"
   rive:
     dependency: "direct main"
     description:

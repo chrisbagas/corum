@@ -156,8 +156,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 content: Text("Akun telah berhasil masuk!"),
                               ));
 
-                              Navigator.pushReplacementNamed(
-                                  context, HomePage.routeName); // buat navigasi ke home
+                              // Navigator.pushReplacementNamed(
+                              //     context, HomePage.routeName); // buat navigasi ke home
                             } else {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(

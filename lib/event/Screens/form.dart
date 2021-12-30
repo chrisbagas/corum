@@ -26,9 +26,6 @@ class formstate extends State<formstateful> {
       setState(() => {intialdateval.text = DateFormat.yMd().format(picked)});
   }
 
-  // void openFile(PlatformFile file){
-  //   OpenFile.open(file.path);
-  // }
   Future<void> _selectTime(BuildContext context) async {
     final picked_s = await showTimePicker(
       context: context,
@@ -64,7 +61,7 @@ class formstate extends State<formstateful> {
     }
   }
 
-  String Title = '';
+  String title = '';
   String date = '';
   String time = '';
   String media = '';
@@ -84,103 +81,14 @@ class formstate extends State<formstateful> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  decoration: new InputDecoration(
-                    labelText: "Title",
-                    icon: Icon(Icons.textsms_outlined),
-                    border: OutlineInputBorder(
-                        borderRadius: new BorderRadius.circular(5.0)),
-                  ),
-                  validator: (value) {
-                    if (value != null) {
-                      if (value.isEmpty) {
-                        return 'Title tidak boleh kosong';
-                      }
-                      return null;
-                    }
-                  },
-                ),
+                child: buildTitle(),
               ),
+              Padding(padding: const EdgeInsets.all(8.0), child: buildDate()),
+              Padding(padding: const EdgeInsets.all(8.0), child: buildTime()),
+              Padding(padding: const EdgeInsets.all(8.0), child: buildMedia()),
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  controller: intialdateval,
-                  onTap: () {
-                    _selectDate();
-                    FocusScope.of(context).requestFocus(new FocusNode());
-                  },
-                  maxLines: 1,
-                  validator: (value) {
-                    if (value!.isEmpty || value.length < 1) {
-                      return 'Date tidak boleh kosong';
-                    }
-                    return null;
-                  },
-                  decoration: new InputDecoration(
-                    labelText: "Date",
-                    icon: Icon(Icons.calendar_today_rounded),
-                    border: OutlineInputBorder(
-                        borderRadius: new BorderRadius.circular(5.0)),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  controller: intialtimeval,
-                  onTap: () {
-                    _selectTime(context);
-                    FocusScope.of(context).requestFocus(new FocusNode());
-                  },
-                  maxLines: 1,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Time tidak boleh kosong';
-                    }
-                    return null;
-                  },
-                  decoration: new InputDecoration(
-                    labelText: "Time",
-                    icon: Icon(Icons.access_time_sharp),
-                    border: OutlineInputBorder(
-                        borderRadius: new BorderRadius.circular(5.0)),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  decoration: new InputDecoration(
-                    labelText: "Media",
-                    icon: Icon(Icons.tv),
-                    border: OutlineInputBorder(
-                        borderRadius: new BorderRadius.circular(5.0)),
-                  ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Media tidak boleh kosong';
-                    }
-                    return null;
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  decoration: new InputDecoration(
-                    labelText: "Description",
-                    icon: Icon(Icons.text_snippet),
-                    border: OutlineInputBorder(
-                        borderRadius: new BorderRadius.circular(5.0)),
-                  ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Description tidak boleh kosong';
-                    }
-                    return null;
-                  },
-                ),
-              ),
+                  padding: const EdgeInsets.all(8.0),
+                  child: buildDescription()),
               RaisedButton(
                 child: Text(
                   "Pick Thumbnail",
@@ -202,22 +110,108 @@ class formstate extends State<formstateful> {
                 },
               ),
               RaisedButton(
-                child: Text(
-                  "Submit",
-                  style: TextStyle(color: Colors.white),
-                ),
-                color: Colors.blue,
-                onPressed: () {
-                  final isValid = _formKey.currentState!.validate();
-                  if (isValid) {
-                    _formKey.currentState!.save();
-                  }
-                },
-              ),
+                  child: Text(
+                    "Submit",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  color: Colors.blue,
+                  onPressed: () {
+                    final isValid = _formKey.currentState!.validate();
+                    if (isValid) {
+                      _formKey.currentState!.save();
+                      final message = 'Title: $title';
+                      print(message);
+                    }
+                  }),
             ],
           ),
         ),
       ),
     ));
   }
+
+  Widget buildTitle() => TextFormField(
+      decoration: new InputDecoration(
+        labelText: "Title",
+        icon: Icon(Icons.textsms_outlined),
+        border:
+            OutlineInputBorder(borderRadius: new BorderRadius.circular(5.0)),
+      ),
+      validator: (value) {
+        if (value != null) {
+          if (value.isEmpty) {
+            return 'Title tidak boleh kosong';
+          }
+          return null;
+        }
+      },
+      onSaved: (value) => setState(() => title = value!));
+  Widget buildDate() => TextFormField(
+      controller: intialdateval,
+      onTap: () {
+        _selectDate();
+        FocusScope.of(context).requestFocus(new FocusNode());
+      },
+      maxLines: 1,
+      validator: (value) {
+        if (value!.isEmpty || value.length < 1) {
+          return 'Date tidak boleh kosong';
+        }
+        return null;
+      },
+      decoration: new InputDecoration(
+        labelText: "Date",
+        icon: Icon(Icons.calendar_today_rounded),
+        border:
+            OutlineInputBorder(borderRadius: new BorderRadius.circular(5.0)),
+      ),
+      onSaved: (value) => setState(() => date = value!));
+  Widget buildTime() => TextFormField(
+      controller: intialtimeval,
+      onTap: () {
+        _selectTime(context);
+        FocusScope.of(context).requestFocus(new FocusNode());
+      },
+      maxLines: 1,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'Time tidak boleh kosong';
+        }
+        return null;
+      },
+      decoration: new InputDecoration(
+        labelText: "Time",
+        icon: Icon(Icons.access_time_sharp),
+        border:
+            OutlineInputBorder(borderRadius: new BorderRadius.circular(5.0)),
+      ),
+      onSaved: (value) => setState(() => time = value!));
+  Widget buildMedia() => TextFormField(
+      decoration: new InputDecoration(
+        labelText: "Media",
+        icon: Icon(Icons.tv),
+        border:
+            OutlineInputBorder(borderRadius: new BorderRadius.circular(5.0)),
+      ),
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'Media tidak boleh kosong';
+        }
+        return null;
+      },
+      onSaved: (value) => setState(() => media = value!));
+  Widget buildDescription() => TextFormField(
+      decoration: new InputDecoration(
+        labelText: "Description",
+        icon: Icon(Icons.text_snippet),
+        border:
+            OutlineInputBorder(borderRadius: new BorderRadius.circular(5.0)),
+      ),
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'Description tidak boleh kosong';
+        }
+        return null;
+      },
+      onSaved: (value) => setState(() => description = value!));
 }
