@@ -36,12 +36,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
   String firstName = '';
   String lastName = '';
   String email = '';
-  String username = '';
   String bio = '';
   File? image;
   @override
   Widget build(BuildContext context) {
     final request = context.watch<ConnectNetworkService>();
+    String username = request.username;
     return Scaffold(
       appBar: AppBar(
         title: Text("Edit Profil"),
@@ -91,8 +91,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFieldWidget(
-                  label: 'Nama Depan',
-                  text: firstName,
+                  label: 'Bio',
+                  text: bio,
                   onChanged: (String? value) {
                     setState(() {
                       bio = value!;
@@ -141,7 +141,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         base64Encode(image!.readAsBytesSync());
                     final String fileName = image!.path.split("/").last;
                     final response = await request.post(
-                        "https://corum.herokuapp.com/event/post/",
+                        "https://corum.herokuapp.com/profile/flutter/edit",
                         convert.jsonEncode(<String, String>{
                           'firstName': firstName,
                           'lastName': lastName,

@@ -68,7 +68,7 @@ class ItemList extends StatelessWidget {
     String email = list['profile'][0]['fields']['email'].toString();
     String username = list['profile'][0]['fields']['username'].toString();
     String bio = list['profile'][1]['fields']['bio'].toString();
-    String imagePath = "https://corumbucket.s3.amazonaws.com/" +
+    String imagePath = 'https://corumbucket.s3.amazonaws.com/' +
         list['profile'][1]['fields']['image'].toString();
     return SizedBox(
         height: MediaQuery.of(context).size.height * 0.6,
@@ -89,7 +89,7 @@ class ItemList extends StatelessWidget {
                     'Nama Depan',
                     style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 5),
                   Text(
                     firstName,
                     style: TextStyle(fontSize: 16, height: 1.4),
@@ -106,7 +106,7 @@ class ItemList extends StatelessWidget {
                     'Nama Belakang',
                     style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 5),
                   Text(
                     lastName,
                     style: TextStyle(fontSize: 16, height: 1.4),
@@ -123,7 +123,7 @@ class ItemList extends StatelessWidget {
                     'Username',
                     style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 5),
                   Text(
                     username,
                     style: TextStyle(fontSize: 16, height: 1.4),
@@ -140,7 +140,7 @@ class ItemList extends StatelessWidget {
                     'Email',
                     style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 5),
                   Text(
                     email,
                     style: TextStyle(fontSize: 16, height: 1.4),
@@ -157,7 +157,7 @@ class ItemList extends StatelessWidget {
                     'Bio',
                     style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 5),
                   Text(
                     bio,
                     style: TextStyle(fontSize: 16, height: 1.4),
