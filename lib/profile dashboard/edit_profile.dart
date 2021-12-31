@@ -62,14 +62,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
         key: _formKey,
         child: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(10.0),
             child: Column(children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFieldWidget(
                   label: 'Nama Depan',
                   text: firstName,
-                  onChanged: (String? value) {
+                  onSaved: (String? value) {
                     setState(() {
                       firstName = value!;
                     });
@@ -81,7 +81,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 child: TextFieldWidget(
                   label: 'Nama Belakang',
                   text: lastName,
-                  onChanged: (String? value) {
+                  onSaved: (String? value) {
                     setState(() {
                       lastName = value!;
                     });
@@ -93,7 +93,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 child: TextFieldWidget(
                   label: 'Bio',
                   text: bio,
-                  onChanged: (String? value) {
+                  onSaved: (String? value) {
                     setState(() {
                       bio = value!;
                     });
@@ -141,7 +141,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         base64Encode(image!.readAsBytesSync());
                     final String fileName = image!.path.split("/").last;
                     final response = await request.post(
-                        "https://corum.herokuapp.com/profile/flutter/edit",
+                        "https://corum.herokuapp.com/profile/edit/flutter",
                         convert.jsonEncode(<String, String>{
                           'firstName': firstName,
                           'lastName': lastName,
