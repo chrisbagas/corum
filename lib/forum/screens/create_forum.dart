@@ -1,4 +1,5 @@
 import 'package:corum/api/GetCookies.dart';
+import 'package:corum/forum/screens/forum_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'dart:convert' as convert;
@@ -47,7 +48,7 @@ class _ForumFormState extends State<ForumForm> {
                       icon: Icon(Icons.text_fields_outlined),
                       alignLabelWithHint: true,
                       labelText: 'Title',
-                      hintText: 'Write the title for your forum post here.',
+                      hintText: 'Write the title for your forum here.',
                     ),
                     onChanged: (String? value) {
                       setState(() {
@@ -71,13 +72,13 @@ class _ForumFormState extends State<ForumForm> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: TextFormField(
-                    maxLines: 12,
+                    maxLines: 5,
                     style: Theme.of(context).textTheme.bodyText2,
                     decoration: const InputDecoration(
                       icon: Icon(Icons.notes),
                       alignLabelWithHint: true,
                       labelText: 'Body',
-                      hintText: 'Write your forum here.',
+                      hintText: 'Write your forum body here.',
                     ),
                     onChanged: (String? value) {
                       setState(() {

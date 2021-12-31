@@ -14,7 +14,20 @@ class ForumHome extends StatefulWidget {
 }
 
 class _ForumHomeState extends State<ForumHome> {
-  final Future<List<Forum>> forums = fetchForums();
+  Future<List<Forum>> forums = fetchForums();
+
+  _navigateAndRefresh(BuildContext context) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const ForumForm()),
+    );
+
+    if (result) {
+      setState(() {
+        forums = fetchForums();
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +51,13 @@ class _ForumHomeState extends State<ForumHome> {
           padding: const EdgeInsets.only(bottom: 80),
           child: FloatingActionButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ForumForm()),
-              );
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) => const ForumForm())).then((value) {
+              //   setState(() {});
+              // });
+              _navigateAndRefresh(context);
             },
             tooltip: 'Add forum',
             child: const Icon(Icons.add),

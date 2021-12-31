@@ -47,6 +47,7 @@ class _ForumDetailPageState extends State<ForumDetailPage> {
                 ),
                 Card(
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
                         margin: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -58,32 +59,30 @@ class _ForumDetailPageState extends State<ForumDetailPage> {
                           ),
                         ),
                       ),
-                      Column(
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                widget.forum.authorUsername
-                                    .toString()
-                                    .toUpperCase(),
-                                style: Theme.of(context).textTheme.subtitle2,
-                              ),
-                              Text(
-                                timeago.format(widget.forum.modifiedTime),
-                                style: Theme.of(context).textTheme.subtitle2,
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            width: double.infinity,
-                          ),
-                          Text(
-                            widget.forum.body,
-                            style: Theme.of(context).textTheme.headline5,
-                          ),
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.forum.authorUsername
+                                  .toString()
+                                  .toUpperCase(),
+                              style: Theme.of(context).textTheme.subtitle2,
+                            ),
+                            Text(
+                              timeago.format(widget.forum.modifiedTime),
+                              style: Theme.of(context).textTheme.caption,
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              widget.forum.body,
+                              style: Theme.of(context).textTheme.headline5,
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
