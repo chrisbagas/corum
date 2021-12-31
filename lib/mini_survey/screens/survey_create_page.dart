@@ -18,7 +18,7 @@ class _SurveyCreatePageState extends State<SurveyCreatePage> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('Create New Survey'),
-        backgroundColor: Colors.greenAccent.shade200,
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 56.0),
