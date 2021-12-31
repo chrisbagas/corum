@@ -21,6 +21,9 @@ class _DeleteModalState extends State<DeleteModal> {
     return AlertDialog(
       content: const Text(
         "You're about to delete one of your posts. Are you sure you want to proceed?",
+        style: const TextStyle(
+            color: Color(0xFF080405),
+        ),
       ),
       actions: <Widget>[
         TextButton(
@@ -28,6 +31,11 @@ class _DeleteModalState extends State<DeleteModal> {
             await _request.postHtml(
               'https://corum.herokuapp.com/blog/${widget.slug}/delete-post/',
               null,
+            );
+            ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text(
+                                'Your post was deleted successfully!\n\n\n\n')),
             );
             Navigator.pop(context, true);
           },
