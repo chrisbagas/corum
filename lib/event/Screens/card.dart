@@ -124,7 +124,7 @@ class _CardlistState extends State<Cardlist> {
                 })
           ])));
         } else {
-          return const CircularProgressIndicator();
+          return Center(child: const CircularProgressIndicator());
         }
       },
     );
