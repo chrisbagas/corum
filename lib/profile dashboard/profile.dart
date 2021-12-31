@@ -63,13 +63,13 @@ class ItemList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String firstName = list[0]['fields']['first_name'].toString();
-    String lastName = list[0]['fields']['last_name'].toString();
-    String email = list[0]['fields']['email'].toString();
-    String username = list[0]['fields']['username'].toString();
-    String bio = list[1]['fields']['bio'].toString();
+    String firstName = list['profile'][0]['fields']['first_name'].toString();
+    String lastName = list['profile'][0]['fields']['last_name'].toString();
+    String email = list['profile'][0]['fields']['email'].toString();
+    String username = list['profile'][0]['fields']['username'].toString();
+    String bio = list['profile'][1]['fields']['bio'].toString();
     String imagePath = "https://corumbucket.s3.amazonaws.com/" +
-        list[1]['fields']['image'].toString();
+        list['profile'][1]['fields']['image'].toString();
     return SizedBox(
         child: ListView(
       children: <Widget>[
