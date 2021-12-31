@@ -7,7 +7,8 @@ import 'package:corum/api/GetCookies.dart';
 
 class ForumHome extends StatefulWidget {
   const ForumHome({Key? key}) : super(key: key);
-  static const routeName = '/forum';
+
+  // static const routeName = '/forum';
 
   @override
   _ForumHomeState createState() => _ForumHomeState();

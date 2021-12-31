@@ -89,12 +89,6 @@ class _CardItemState extends State<CardItem> {
                             width: 38,
                             child: TextButton(
                               onPressed: () async {
-                                Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const ForumHome()))
-                                    .then((value) => Navigator.pop(context));
                                 await _request.postHtml(
                                     "http://corum.herokuapp.com/forum/${widget.forum.pk}/delete",
                                     null);
