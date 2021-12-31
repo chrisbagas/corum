@@ -13,6 +13,7 @@ import 'event/Screens/body_home.dart';
 import 'mini_survey/screens/survey_main_page.dart';
 import 'profile dashboard/profile.dart';
 import 'temp.dart';
+import 'homepage/homescreen.dart';
 
 void main() => runApp(const MyApp());
 
@@ -58,7 +59,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int index = 0;
   final screens = [
-    const Temp(),
+    HomePage(),
     const Body(),
     const ForumHome(),
     const Blog(),
