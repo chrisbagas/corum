@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
     temp(),
     Body(),
     temp(),
-    blog(),
+    Blog(),
     temp(),
     ProfilePage(),
   ];

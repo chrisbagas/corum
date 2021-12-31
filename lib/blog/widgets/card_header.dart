@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:corum/api/GetCookies.dart';
+
+import 'delete_modal.dart';
+import 'edit_form.dart';
 import 'animated_icon.dart';
 import '../models/post.dart';
 
 const prefixUrl = 'assets/graphics';
 
 const iconUrls = [
-  '$prefixUrl/trash_bin.riv',
-  '$prefixUrl/pencil.riv',
+  '$prefixUrl/trash_bin_white.riv',
+  '$prefixUrl/pencil_white.riv',
 ];
 
 class CardHeader extends StatefulWidget {
@@ -29,6 +34,7 @@ class _CardHeaderState extends State<CardHeader> {
   }
 
   Widget _buildInit(BuildContext context) {
+    final _request = context.watch<ConnectNetworkService>();
     return IgnorePointer(
       ignoring: _isExpanded,
       child: ListTile(
@@ -46,21 +52,23 @@ class _CardHeaderState extends State<CardHeader> {
             style: Theme.of(context).textTheme.bodyText1,
           ),
         ),
-        trailing: AnimatedOpacity(
-          duration: const Duration(milliseconds: 180),
-          opacity: _isExpanded ? 0 : 1,
-          child: IconButton(
-            onPressed: () {
-              setState(() {
-                toggleExpand();
-              });
-            },
-            icon: const Icon(
-              Icons.more_horiz_rounded,
-              color: Colors.white,
-            ),
-          ),
-        ),
+        trailing: (_request.username == widget.post.author)
+            ? AnimatedOpacity(
+                duration: const Duration(milliseconds: 180),
+                opacity: _isExpanded ? 0 : 1,
+                child: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      toggleExpand();
+                    });
+                  },
+                  icon: const Icon(
+                    Icons.more_horiz_rounded,
+                    color: Color(0xFFF2F8F2),
+                  ),
+                ),
+              )
+            : null,
       ),
     );
   }
@@ -68,39 +76,42 @@ class _CardHeaderState extends State<CardHeader> {
   Widget _buildExpanded(BuildContext context) {
     List<Widget> l = [];
 
-    int temp = 1;
+    // int temp = 1;
 
-    for (String iconUrl in iconUrls) {
-      l.add(
-        AnimatedContainer(
-          duration: Duration(milliseconds: 180 * temp),
-          child: AnimatedOpacity(
-            duration: Duration(milliseconds: 180 * temp++),
-            opacity: _isExpanded ? 1 : 0,
-            child: RiveIcon(iconUrl: iconUrl),
-          ),
-        ),
-      );
-    }
+    // for (String iconUrl in iconUrls) {
+    //   l.add(
+    //     AnimatedContainer(
+    //       duration: Duration(milliseconds: 180 * temp),
+    //       child: AnimatedOpacity(
+    //         duration: Duration(milliseconds: 180 * temp++),
+    //         opacity: _isExpanded ? 1 : 0,
+    //         child: RiveIcon(iconUrl: iconUrl),
+    //       ),
+    //     ),
+    //   );
+    // }
 
-    l.add(
-      AnimatedOpacity(
-        duration: const Duration(milliseconds: 180),
-        opacity: _isExpanded ? 1 : 0,
-        child: IconButton(
-          onPressed: () {
-            setState(() {
-              toggleExpand();
-            });
-          },
-          icon: const Icon(
-            Icons.circle,
-            size: 4.2,
-            color: Colors.white,
-          ),
-        ),
-      ),
-    );
+    // l.add(
+    //   AnimatedOpacity(
+    //     duration: const Duration(milliseconds: 180),
+    //     opacity: _isExpanded ? 1 : 0,
+    //     child: IconButton(
+    //       onPressed: () {
+    //         setState(() {
+    //           toggleExpand();
+    //         });
+    //       },
+    //       icon: const Icon(
+    //         Icons.linear_scale_rounded,
+    //         size: 20,
+    //         color: Colors.white,
+    //       ),
+    //     ),
+    //   ),
+    // );
+
+    final DeleteModal _deleteModal = DeleteModal(slug: widget.post.slug);
+    final EditForm _editForm = EditForm(post: widget.post);
 
     return IgnorePointer(
       ignoring: !_isExpanded,
@@ -112,7 +123,48 @@ class _CardHeaderState extends State<CardHeader> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.end,
-              children: l,
+              children: <Widget>[
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 180),
+                  child: AnimatedOpacity(
+                    duration: const Duration(milliseconds: 180),
+                    opacity: _isExpanded ? 1 : 0,
+                    child: RiveIcon(
+                      iconUrl: iconUrls[0],
+                      widgetDest: _deleteModal,
+                      isModal: true,
+                    ),
+                  ),
+                ),
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 360),
+                  child: AnimatedOpacity(
+                    duration: const Duration(milliseconds: 360),
+                    opacity: _isExpanded ? 1 : 0,
+                    child: RiveIcon(
+                      iconUrl: iconUrls[1],
+                      widgetDest: _editForm,
+                      isModal: false,
+                    ),
+                  ),
+                ),
+                AnimatedOpacity(
+                  duration: const Duration(milliseconds: 180),
+                  opacity: _isExpanded ? 1 : 0,
+                  child: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        toggleExpand();
+                      });
+                    },
+                    icon: const Icon(
+                      Icons.linear_scale_rounded,
+                      size: 20,
+                      color: Color(0xFFF2F8F2),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
 import '../models/post.dart';
 import './card_header.dart';
+import './detailed_post.dart';
 
 const prefixUrl = 'assets/graphics';
-
-const iconUrls = [
-  '$prefixUrl/trash_bin.riv',
-  '$prefixUrl/pencil.riv',
-];
 
 @immutable
 class CardItem extends StatelessWidget {
@@ -25,42 +22,63 @@ class CardItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CardHeader(post: post),
-        AspectRatio(
-          aspectRatio: 16 / 9,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Stack(
-              children: [
-                _buildParallaxBackground(context),
-                _buildGradient(),
-              ],
-            ),
+        InkWell(
+          customBorder: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(12), topRight: Radius.circular(12)),
           ),
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailedPost(
+                  post: post,
+                ),
+              ),
+            );
+          },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: Text(
-                  post.title,
-                  style: Theme.of(context).textTheme.headline4,
+              AspectRatio(
+                aspectRatio: 16 / 9,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Stack(
+                    children: [
+                      _buildParallaxBackground(context),
+                      _buildGradient(),
+                    ],
+                  ),
                 ),
               ),
               Container(
-                padding: const EdgeInsets.only(bottom: 6),
-                child: Text(
-                  post.subtitle,
-                  style: Theme.of(context).textTheme.headline5,
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.only(top: 24, bottom: 20),
-                child: Text(
-                  'Posted on ${post.datePublished}',
-                  style: Theme.of(context).textTheme.caption,
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: Text(
+                        post.title,
+                        style: Theme.of(context).textTheme.headline4,
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(bottom: 6),
+                      child: Text(
+                        post.subtitle,
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(top: 24, bottom: 20),
+                      child: Text(
+                        'Posted on ${post.datePublished}',
+                        style: Theme.of(context).textTheme.caption,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -84,10 +102,13 @@ class CardItem extends StatelessWidget {
         backgroundImageKey: _backgroundImageKey,
       ),
       children: [
-        Image.network(
-          post.thumbnailUrl,
-          key: _backgroundImageKey,
-          fit: BoxFit.cover,
+        Hero(
+          tag: post.slug,
+          child: Image.network(
+            post.thumbnailUrl,
+            key: _backgroundImageKey,
+            fit: BoxFit.cover,
+          ),
         ),
       ],
     );

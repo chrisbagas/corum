@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'widgets/index_page.dart';
 
-class blog extends StatelessWidget {
-  const blog({Key? key}) : super(key: key);
+class Blog extends StatelessWidget {
+  const Blog({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
