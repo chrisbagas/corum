@@ -3,7 +3,6 @@ import 'package:corum/forum/screens/create_forum.dart';
 import 'package:corum/forum/widgets/forum_card_list.dart';
 import 'package:corum/forum/models/forum_model.dart';
 import 'package:provider/provider.dart';
-// import 'package:corum/forum/models/forum_model_alt.dart';
 import 'package:corum/api/GetCookies.dart';
 
 class ForumHome extends StatefulWidget {
@@ -20,16 +19,17 @@ class _ForumHomeState extends State<ForumHome> {
   @override
   Widget build(BuildContext context) {
     final request = context.watch<ConnectNetworkService>();
+    final _username = request.username;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Forum"),
+        title: Text(request.username.toString()),
         backgroundColor: Colors.greenAccent.shade200,
       ),
       body: Padding(
         padding: const EdgeInsets.only(bottom: 68),
         child: Center(
-          child: CardList(forums: forums),
+          child: CardList(forums: forums, username: _username),
         ),
       ),
       floatingActionButton: Visibility(

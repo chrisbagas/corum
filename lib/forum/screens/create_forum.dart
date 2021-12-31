@@ -100,14 +100,14 @@ class _ForumFormState extends State<ForumForm> {
                 ElevatedButton(
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      const url =
-                          "http://corum.herokuapp.com/forum/create-flutter";
                       final response = await request.postJson(
-                          url,
+                          "http://corum.herokuapp.com/forum/create-flutter",
                           convert.jsonEncode(<String, String>{
-                            'title': _title.toString(),
-                            'body': _body.toString(),
+                            'title': _title,
+                            'body': _body,
                           }));
+
+                      print("response " + response.toString());
 
                       if (response['status'] == 'success') {
                         ScaffoldMessenger.of(context).showSnackBar(

@@ -9,9 +9,11 @@ class CardList extends StatefulWidget {
   const CardList({
     Key? key,
     required this.forums,
+    required this.username,
   }) : super(key: key);
 
   final Future<List<Forum>> forums;
+  final String username;
 
   @override
   State<CardList> createState() => _CardListState();
@@ -27,16 +29,26 @@ class _CardListState extends State<CardList> {
           if (!snapshot.hasData) {
             return Center(
               child: Text(
-                'Nothing Found 😢',
+                'Nothing Found',
                 style: Theme.of(context).textTheme.headline4,
               ),
             );
           }
 
-          return ListView(
-            children: snapshot.data!.map<Widget>((forum) {
-              return CardItem(forum: forum);
-            }).toList(),
+          // return ListView(
+          //   children: snapshot.data!.map<Widget>((forum) {
+          //     return CardItem(forum: forum, username: widget.username);
+          //   }).toList(),
+          // );
+          return ListView.builder(
+            shrinkWrap: true,
+            itemCount: snapshot.data!.length,
+            itemBuilder: (context, index) {
+              return CardItem(
+                forum: snapshot.data![index],
+                username: snapshot.data![index].authorUsername,
+              );
+            },
           );
         } else {
           return const CircularProgressIndicator();
