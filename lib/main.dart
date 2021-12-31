@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final screens = [
     const Temp(),
     const Body(),
-    const Temp(),
+    const ForumHome(),
     const Blog(),
     const Temp(),
     ProfilePage(),
