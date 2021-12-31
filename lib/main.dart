@@ -12,7 +12,6 @@ import 'blog/blog.dart';
 import 'event/Screens/body_home.dart';
 import 'mini_survey/screens/survey_main_page.dart';
 import 'profile dashboard/profile.dart';
-import 'temp.dart';
 import 'homepage/homescreen.dart';
 
 void main() => runApp(const MyApp());
