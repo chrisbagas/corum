@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 
 import './survey_create_page.dart';
@@ -14,7 +15,7 @@ class SurveyMainPage extends StatefulWidget {
 }
 
 class _SurveyMainPageState extends State<SurveyMainPage> {
-  Future<List<Survey>> surveys = fetchSurveys();
+  final Future<List<Survey>> surveys = fetchSurveys();
 
   Widget buildHeader() {
     return Container(
@@ -112,7 +113,7 @@ class _SurveyMainPageState extends State<SurveyMainPage> {
             ),
             buildContentHeader(),
             buildSearchBar(),
-            SurveyCards(surveys: surveys)
+            SurveyCards(survey: surveys)
           ],
         ),
       ),

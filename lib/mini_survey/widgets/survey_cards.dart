@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../models/survey.dart';
 
 class SurveyCards extends StatefulWidget {
-  const SurveyCards({ Key? key, required this.surveys, }) : super(key: key);
+  const SurveyCards({ Key? key, required this.survey, }) : super(key: key);
 
-  final Future<List<Survey>> surveys;
+  final Future<List<Survey>> survey;
 
   @override
   _SurveyCardsState createState() => _SurveyCardsState();
@@ -15,7 +15,7 @@ class _SurveyCardsState extends State<SurveyCards> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Survey>>(
-      future: widget.surveys,
+      future: widget.survey,
       builder: (context, AsyncSnapshot<List<Survey>> snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (!snapshot.hasData) {
@@ -44,7 +44,7 @@ class _SurveyCardsState extends State<SurveyCards> {
             itemBuilder: (context, index) {
               return Card(
                 shadowColor: Colors.black,
-                elevation: 8,
+                elevation: 10,
                 color: Theme.of(context).primaryColor,
                 clipBehavior: Clip.antiAlias,
                 shape: RoundedRectangleBorder(
@@ -58,9 +58,17 @@ class _SurveyCardsState extends State<SurveyCards> {
                     children: [
                       Row(
                         children: [
-                          Text(
-                            snapshot.data![index].title,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Text(
+                              snapshot.data![index].title,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 195,
                           ),
                           GestureDetector(
                             onTap: () {},
@@ -75,6 +83,9 @@ class _SurveyCardsState extends State<SurveyCards> {
                                 size: 12.0,
                               ),
                             )
+                          ),
+                          const SizedBox(
+                            width: 10,
                           ),
                           GestureDetector(
                             onTap: () {},
@@ -99,6 +110,9 @@ class _SurveyCardsState extends State<SurveyCards> {
                               children: [
                                 Row(
                                   children: [
+                                    const SizedBox(
+                                      width: 12,
+                                    ),
                                     const Icon(
                                       Icons.calendar_today_outlined,
                                       size: 12,
@@ -109,11 +123,11 @@ class _SurveyCardsState extends State<SurveyCards> {
                                     Text(snapshot.data![index].pubDate),
                                   ],
                                 ),
-                                const SizedBox(
-                                  height: 12,
-                                ),
                                 Row(
                                   children: [
+                                    const SizedBox(
+                                      width: 12,
+                                    ),
                                     const Icon(
                                       Icons.person,
                                       size: 12,
@@ -126,6 +140,13 @@ class _SurveyCardsState extends State<SurveyCards> {
                                 )
                               ],
                             )
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: ElevatedButton(
+                              child: Text('Vote Now'),
+                              onPressed: () {},
+                            ),
                           ),
                         ],
                       )

@@ -16,17 +16,6 @@ class Survey {
   final String creator;
   final String pubDate;
 
-  factory Survey.fromRawJson(String str) => Survey.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
-  Map<String, dynamic> toJson() => {
-    "title" : title,
-    "description" : description,
-    "creator" : creator,
-    "pubDate" : pubDate,
-  };
-
   factory Survey.fromJson(Map<String, dynamic> json) {
     final String jsonDate = json["pub_date"];
 
@@ -36,27 +25,16 @@ class Survey {
     return Survey(
       title: json["title"],
       description: json["description"],
-      creator: json["creator"],
+      creator: json["creator"][0],
       pubDate: formattedDate,
     );
   }
 }
 
-List<dynamic> parseSurveys(String json) {
-  final parsed = jsonDecode(json);
-  return List<dynamic>.from(parsed);
-}
-
-Survey parseSurvey(String json) {
-  final parsed = jsonDecode(json);
-  Survey survey = Survey.fromJson(parsed);
-  return survey;
-}
-
 Future<List<Survey>> fetchSurveys() async {
-  var url = Uri.parse("https://corum.herokuapp.com/survey/get-lists/");
+  const url = "https://corum.herokuapp.com/survey/get-lists/";
 
-  final response = await http.get(url);
+  final response = await http.get(Uri.parse(url));
   List<dynamic> extractedData = jsonDecode(response.body);
   List<Survey> surveys = [];
 
