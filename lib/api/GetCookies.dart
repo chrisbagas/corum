@@ -77,6 +77,17 @@ class ConnectNetworkService {
     return json.decode(response.body);
   }
 
+  Future<dynamic> postHtml(String url, dynamic data) async {
+    if (kIsWeb) {
+      dynamic c = _client;
+      c.withCredentials = true;
+    }
+    http.Response response =
+        await _client.post(Uri.parse(url), body: data, headers: headers);
+    _updateCookie(response);
+    return response.toString();
+  }
+
   Future<dynamic> postJson(String url, dynamic data) async {
     if (kIsWeb) {
       dynamic c = _client;

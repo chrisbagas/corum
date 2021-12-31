@@ -78,87 +78,96 @@ class formstate extends State<formstateful> {
   Widget build(BuildContext context) {
     final request = context.watch<ConnectNetworkService>();
     return Scaffold(
-        body: Form(
-      key: _formKey,
-      child: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: buildTitle(),
-              ),
-              Padding(padding: const EdgeInsets.all(8.0), child: buildDate()),
-              Padding(padding: const EdgeInsets.all(8.0), child: buildTime()),
-              Padding(padding: const EdgeInsets.all(8.0), child: buildMedia()),
-              Padding(padding: const EdgeInsets.all(8.0), child: buildTipe()),
-              Padding(padding: const EdgeInsets.all(8.0), child: buildUrl()),
-              Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: buildDescription()),
-              RaisedButton(
-                child: Text(
-                  "Pick Thumbnail",
-                  style: TextStyle(color: Colors.white),
-                ),
-                color: Colors.blue,
-                onPressed: () {
-                  pickImage();
-                },
-              ),
-              RaisedButton(
-                child: Text(
-                  "Pick Page Image",
-                  style: TextStyle(color: Colors.white),
-                ),
-                color: Colors.blue,
-                onPressed: () {
-                  pickImage2();
-                },
-              ),
-              RaisedButton(
-                  child: Text(
-                    "Submit",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  color: Colors.blue,
-                  onPressed: () async {
-                    final isValid = _formKey.currentState!.validate();
-                    if (isValid) {
-                      _formKey.currentState!.save();
-
-                      final String base64file1 =
-                          base64Encode(image1!.readAsBytesSync());
-                      final String fileName1 = image1!.path.split("/").last;
-                      final String base64file2 =
-                          base64Encode(image2!.readAsBytesSync());
-                      final String fileName2 = image2!.path.split("/").last;
-                      final response = await request.post(
-                          "https://corum.herokuapp.com/event/post/",
-                          convert.jsonEncode(<String, String>{
-                            'title': title,
-                            'tanggal': date,
-                            'waktu': time,
-                            'media': media,
-                            'tipe': tipe,
-                            'url': url,
-                            'deskripsi': description,
-                            'file1': base64file1,
-                            'name1': fileName1,
-                            'file2': base64file2,
-                            'name2': fileName2,
-                          }));
-                      if (response['status'] == 'success') {
-                        Navigator.pop(context);
-                      }
-                    }
-                  }),
-            ],
-          ),
+        appBar: AppBar(
+          title: Text("Event Form Admin Only"),
+          backgroundColor: Theme.of(context).primaryColor,
         ),
-      ),
-    ));
+        body: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            child: Container(
+              padding: EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: buildTitle(),
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.all(8.0), child: buildDate()),
+                  Padding(
+                      padding: const EdgeInsets.all(8.0), child: buildTime()),
+                  Padding(
+                      padding: const EdgeInsets.all(8.0), child: buildMedia()),
+                  Padding(
+                      padding: const EdgeInsets.all(8.0), child: buildTipe()),
+                  Padding(
+                      padding: const EdgeInsets.all(8.0), child: buildUrl()),
+                  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: buildDescription()),
+                  RaisedButton(
+                    child: Text(
+                      "Pick Thumbnail",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    color: Colors.blue,
+                    onPressed: () {
+                      pickImage();
+                    },
+                  ),
+                  RaisedButton(
+                    child: Text(
+                      "Pick Page Image",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    color: Colors.blue,
+                    onPressed: () {
+                      pickImage2();
+                    },
+                  ),
+                  RaisedButton(
+                      child: Text(
+                        "Submit",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      color: Colors.blue,
+                      onPressed: () async {
+                        final isValid = _formKey.currentState!.validate();
+                        if (isValid) {
+                          _formKey.currentState!.save();
+
+                          final String base64file1 =
+                              base64Encode(image1!.readAsBytesSync());
+                          final String fileName1 = image1!.path.split("/").last;
+                          final String base64file2 =
+                              base64Encode(image2!.readAsBytesSync());
+                          final String fileName2 = image2!.path.split("/").last;
+                          final response = await request.post(
+                              "https://corum.herokuapp.com/event/post/",
+                              convert.jsonEncode(<String, String>{
+                                'title': title,
+                                'tanggal': date,
+                                'waktu': time,
+                                'media': media,
+                                'tipe': tipe,
+                                'url': url,
+                                'deskripsi': description,
+                                'file1': base64file1,
+                                'name1': fileName1,
+                                'file2': base64file2,
+                                'name2': fileName2,
+                              }));
+                          if (response['status'] == 'success') {
+                            Navigator.pop(context);
+                          }
+                        }
+                      }),
+                ],
+              ),
+            ),
+          ),
+        ));
   }
 
   Widget buildTitle() => TextFormField(

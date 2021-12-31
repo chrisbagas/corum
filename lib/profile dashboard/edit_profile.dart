@@ -1,25 +1,26 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:async';
+import 'dart:convert' as convert;
+import 'dart:convert';
 import 'dart:io';
+import 'package:corum/api/GetCookies.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 import 'widgets/textfield_widget.dart';
-import 'widgets/profilepicture_widget.dart';
 import 'profile.dart';
 
 class EditProfilePage extends StatefulWidget {
+  const EditProfilePage({Key? key}) : super(key: key);
+
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
   final _formKey = GlobalKey<FormState>();
-  String firstName = '';
-  String lastName = '';
-  String email = '';
-  String username = '';
-  String bio = '';
-  File? image;
 
   Future pickImage() async {
     try {
@@ -32,8 +33,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
     }
   }
 
+  String firstName = '';
+  String lastName = '';
+  String email = '';
+  String bio = '';
+  File? image;
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<ConnectNetworkService>();
+    String username = request.username;
     return Scaffold(
       appBar: AppBar(
         title: Text("Edit Profil"),
@@ -83,8 +91,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFieldWidget(
-                  label: 'Nama Depan',
-                  text: firstName,
+                  label: 'Bio',
+                  text: bio,
                   onChanged: (String? value) {
                     setState(() {
                       bio = value!;
@@ -123,8 +131,39 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     "Simpan",
                     style: TextStyle(color: Colors.white),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     //post
+                    final isValid = _formKey.currentState!.validate();
+                    if (isValid) {
+                      _formKey.currentState!.save();
+                    }
+                    final String base64file =
+                        base64Encode(image!.readAsBytesSync());
+                    final String fileName = image!.path.split("/").last;
+                    final response = await request.post(
+                        "https://corum.herokuapp.com/profile/flutter/edit",
+                        convert.jsonEncode(<String, String>{
+                          'firstName': firstName,
+                          'lastName': lastName,
+                          'username': username,
+                          'bio': bio,
+                          'file': base64file,
+                          'nama': fileName
+                        }));
+                    //munculin popup
+                    if (response['status'] == 'success') {
+                      showDialog<String>(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                                  title: const Text('Changes Saved'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(context, 'OK'),
+                                      child: const Text('OK'),
+                                    ),
+                                  ]));
+                    }
                   },
                 ),
               )

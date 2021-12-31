@@ -1,16 +1,16 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-
-import 'package:corum/api/GetCookies.dart';
-import 'package:corum/authentication/login_page.dart';
-import 'package:corum/authentication/signup_page.dart';
 import 'package:provider/provider.dart';
 
 import 'package:corum/forum/screens/forum_home_page.dart';
 
+import 'api/GetCookies.dart';
+import 'authentication/login_page.dart';
+import 'authentication/signup_page.dart';
 import 'authentication/starting_page.dart';
 import 'blog/blog.dart';
 import 'event/Screens/body_home.dart';
+import 'mini_survey/screens/survey_main_page.dart';
 import 'profile dashboard/profile.dart';
 import 'temp.dart';
 
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: appTitle,
         theme: ThemeData(
-            primaryColor: const Color(0xff4FE8B4),
+            primaryColor: Colors.greenAccent.shade200,
             secondaryHeaderColor: const Color.fromRGBO(101, 204, 184, 1),
             primarySwatch: Colors.green,
             fontFamily: 'Poppins'),
@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
           LoginScreen.routeName: (ctx) => const LoginScreen(),
           MyHomePage.routeName: (ctx) => const MyHomePage(title: appTitle)
         },
+        debugShowCheckedModeBanner: false,
       ),
     );
   }
@@ -61,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
     const Body(),
     const ForumHome(),
     const Blog(),
-    const Temp(),
+    const SurveyMainPage(),
     ProfilePage(),
   ];
   @override
