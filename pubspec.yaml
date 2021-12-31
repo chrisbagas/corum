@@ -47,6 +47,7 @@ dependencies:
   shared_preferences: ^2.0.11
   timeago: ^3.1.0
   url_launcher: ^6.0.17
+  html: ^0.15.0
 
 dev_dependencies: 
   flutter_test:
@@ -84,6 +85,8 @@ flutter:
   assets:
     - assets/graphics/pencil.riv
     - assets/graphics/trash_bin.riv
+    - assets/graphics/pencil_white.riv
+    - assets/graphics/trash_bin_white.riv
     - assets/fonts/lato/
     - assets/fonts/playfair_display/
     - assets/fonts/kite_one/
@@ -123,14 +126,14 @@ flutter:
         - asset: assets/fonts/lato/Lato-Regular.ttf
         - asset: assets/fonts/lato/Lato-Thin.ttf
         - asset: assets/fonts/lato/Lato-ThinItalic.ttf
-    # - family: Playfair Display
-    #   fonts:
-        # - asset: assets/fonts/playfair_display/PlayfairDIsplay-Black.ttf
-        # - asset: assets/fonts/playfair_display/PlayfairDIsplay-BlackItalic.ttf
-        # - asset: assets/fonts/playfair_display/PlayfairDIsplay-Bold.ttf
-        # - asset: assets/fonts/playfair_display/PlayfairDIsplay-BoldItalic.ttf
-        # - asset: assets/fonts/playfair_display/PlayfairDIsplay-Italic.ttf
-        # - asset: assets/fonts/playfair_display/PlayfairDIsplay-Regular.ttf
+    - family: Playfair Display
+      fonts:
+        - asset: assets/fonts/playfair_display/PlayfairDIsplay-Black.ttf
+        - asset: assets/fonts/playfair_display/PlayfairDIsplay-BlackItalic.ttf
+        - asset: assets/fonts/playfair_display/PlayfairDIsplay-Bold.ttf
+        - asset: assets/fonts/playfair_display/PlayfairDIsplay-BoldItalic.ttf
+        - asset: assets/fonts/playfair_display/PlayfairDIsplay-Italic.ttf
+        - asset: assets/fonts/playfair_display/PlayfairDIsplay-Regular.ttf
     - family: Kite One
       fonts:
         - asset: assets/fonts/kite_one/KiteOne-Regular.ttf

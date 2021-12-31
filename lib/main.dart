@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'authentication/starting_page.dart';
 import 'blog/blog.dart';
 import 'event/Screens/body_home.dart';
+import 'profile dashboard/profile.dart';
 import 'temp.dart';
 
 void main() => runApp(const MyApp());
@@ -59,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
     temp(),
     blog(),
     temp(),
-    temp(),
+    ProfilePage(),
   ];
   @override
   Widget build(BuildContext context) {
