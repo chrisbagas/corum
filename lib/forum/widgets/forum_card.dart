@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:corum/forum/screens/forum_detail_page.dart';
+import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:corum/forum/models/forum_model.dart';
 
-@immutable
+import 'package:corum/api/GetCookies.dart';
+
 class CardItem extends StatefulWidget {
   const CardItem({
     Key? key,
@@ -23,6 +25,8 @@ class _CardItemState extends State<CardItem> {
 
   @override
   Widget build(BuildContext context) {
+    final _request = context.watch<ConnectNetworkService>();
+
     return Card(
       margin: const EdgeInsets.fromLTRB(18.0, 16.0, 18.0, 0),
       child: InkWell(
@@ -30,7 +34,11 @@ class _CardItemState extends State<CardItem> {
           setState(() => _showDetailButton = !_showDetailButton);
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const ForumDetailPage()),
+            MaterialPageRoute(
+              builder: (context) => ForumDetailPage(
+                forum: widget.forum,
+              ),
+            ),
           );
         },
         child: Container(
@@ -41,7 +49,7 @@ class _CardItemState extends State<CardItem> {
                 margin: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: CircleAvatar(
                   child: Text(
-                    widget.forum.authorUsername[0],
+                    widget.forum.authorUsername[0].toString().toUpperCase(),
                   ),
                 ),
               ),
@@ -73,9 +81,8 @@ class _CardItemState extends State<CardItem> {
                     Row(
                       children: [
                         Visibility(
-                          visible: (widget.username ==
-                                  widget.forum.authorUsername) &&
-                              widget.forum.authorUsername,
+                          visible: (_request.username.toString() ==
+                              widget.forum.authorUsername.toString()),
                           child: SizedBox(
                             width: 38,
                             child: TextButton(
@@ -94,15 +101,15 @@ class _CardItemState extends State<CardItem> {
                           ),
                         ),
                         Visibility(
-                          visible: (widget.username ==
-                                  widget.forum.authorUsername) &&
-                              widget.forum.authorUsername,
+                          visible: (_request.username.toString() ==
+                              widget.forum.authorUsername.toString()),
                           child: SizedBox(
                             width: 38,
                             child: TextButton(
                               onPressed: () {
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text('Coming soon')),
+                                  const SnackBar(
+                                      content: Text('Coming soon\n')),
                                 );
                               },
                               child: const Icon(

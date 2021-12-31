@@ -23,11 +23,11 @@ class _ForumHomeState extends State<ForumHome> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(request.username.toString()),
+        title: Text("Forum: " + request.username.toString()),
         backgroundColor: Colors.greenAccent.shade200,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(bottom: 68),
+        padding: const EdgeInsets.only(bottom: 0),
         child: Center(
           child: CardList(forums: forums, username: _username),
         ),

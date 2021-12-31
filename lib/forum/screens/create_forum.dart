@@ -42,9 +42,10 @@ class _ForumFormState extends State<ForumForm> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: TextFormField(
-                    // style: Theme.of(context).textTheme.bodyText1,
+                    style: Theme.of(context).textTheme.bodyText1,
                     decoration: const InputDecoration(
                       icon: Icon(Icons.text_fields_outlined),
+                      alignLabelWithHint: true,
                       labelText: 'Title',
                       hintText: 'Write the title for your forum post here.',
                     ),
@@ -71,7 +72,7 @@ class _ForumFormState extends State<ForumForm> {
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: TextFormField(
                     maxLines: 12,
-                    // style: Theme.of(context).textTheme.bodyText2,
+                    style: Theme.of(context).textTheme.bodyText2,
                     decoration: const InputDecoration(
                       icon: Icon(Icons.notes),
                       alignLabelWithHint: true,
@@ -107,14 +108,12 @@ class _ForumFormState extends State<ForumForm> {
                             'body': _body,
                           }));
 
-                      print("response " + response.toString());
-
                       if (response['status'] == 'success') {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                               content: Text('New forum is created!')),
                         );
-                        Navigator.pop(context);
+                        Navigator.pop(context, true);
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
