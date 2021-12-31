@@ -256,9 +256,14 @@ class SearchPost extends SearchDelegate<Post> {
               children: [
                 Container(
                   alignment: Alignment.centerLeft,
-                  child: Text(
+                  child: const Text(
                     'Filter by...',
-                    style: Theme.of(context).textTheme.bodyText2,
+                    style: TextStyle(
+                      color: Color(0xFFF2F8F2),
+                      fontSize: 14,
+                      fontFamily: 'Lato',
+                      fontWeight: FontWeight.normal,
+                    ),
                   ),
                 ),
                 Container(

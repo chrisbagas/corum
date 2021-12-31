@@ -10,7 +10,7 @@ class Blog extends StatelessWidget {
       title: 'Bloggers',
       theme: ThemeData(
         primaryColor: Colors.amber,
-        canvasColor: const Color(0xFF0F0F17),
+        canvasColor: const Color(0xFF0F170F), // F2EFE8
         inputDecorationTheme: InputDecorationTheme(
           contentPadding: const EdgeInsets.fromLTRB(14, 14, 14, 14),
           floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -32,7 +32,7 @@ class Blog extends StatelessWidget {
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(
-              color: Color(0x806082FF),
+              color: Color(0x8060FF6E),
               style: BorderStyle.solid,
               width: 2,
             ),
@@ -50,13 +50,13 @@ class Blog extends StatelessWidget {
         ),
         textTheme: const TextTheme(
           headline4: TextStyle(
-            color: Color(0xFFF2F8F2),
+            color: Color(0xFFF2F8F2), // 080405
             fontSize: 24,
             fontFamily: 'Playfair Display',
             fontWeight: FontWeight.w400,
           ),
           headline5: TextStyle(
-            color: Color(0xFFE6F8F2),
+            color: Color(0xFFE6F8F2), // 0F0802
             fontSize: 16,
             fontFamily: 'Lato',
             fontWeight: FontWeight.w300,
@@ -93,7 +93,7 @@ class Blog extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        primarySwatch: Colors.blueGrey,
+        primarySwatch: Colors.green,
       ),
       home: const IndexPage(),
     );
