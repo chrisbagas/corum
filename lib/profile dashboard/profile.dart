@@ -38,7 +38,7 @@ class _ProfilePageState extends State<ProfilePage> {
           automaticallyImplyLeading: false,
           backgroundColor: Colors.greenAccent.shade200,
         ),
-        body: ListView(physics: const BouncingScrollPhysics(), children: [
+        body: ListView(padding: const EdgeInsets.all(12.0), children: <Widget>[
           FutureBuilder(
             future: fetchData(request),
             builder: (context, snapshot) {
@@ -71,119 +71,121 @@ class ItemList extends StatelessWidget {
     String imagePath = "https://corumbucket.s3.amazonaws.com/" +
         list['profile'][1]['fields']['image'].toString();
     return SizedBox(
+        height: MediaQuery.of(context).size.height * 0.6,
         child: ListView(
-      children: <Widget>[
-        Padding(
-          padding: EdgeInsets.fromLTRB(0, 16, 0, 40),
-          child: ProfileWidget(
-            imagePath: imagePath,
-          ),
-        ),
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 48),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Nama Depan',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 16, 0, 40),
+              child: ProfileWidget(
+                imagePath: imagePath,
               ),
-              const SizedBox(height: 16),
-              Text(
-                firstName,
-                style: TextStyle(fontSize: 16, height: 1.4),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 48),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Nama Depan',
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    firstName,
+                    style: TextStyle(fontSize: 16, height: 1.4),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 48),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Nama Belakang',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 48),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Nama Belakang',
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    lastName,
+                    style: TextStyle(fontSize: 16, height: 1.4),
+                  ),
+                ],
               ),
-              const SizedBox(height: 16),
-              Text(
-                lastName,
-                style: TextStyle(fontSize: 16, height: 1.4),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 48),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Username',
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    username,
+                    style: TextStyle(fontSize: 16, height: 1.4),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 48),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Username',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 48),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Email',
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    email,
+                    style: TextStyle(fontSize: 16, height: 1.4),
+                  ),
+                ],
               ),
-              const SizedBox(height: 16),
-              Text(
-                username,
-                style: TextStyle(fontSize: 16, height: 1.4),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 48),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Bio',
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    bio,
+                    style: TextStyle(fontSize: 16, height: 1.4),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 48),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Email',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                email,
-                style: TextStyle(fontSize: 16, height: 1.4),
-              ),
-            ],
-          ),
-        ),
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 48),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Bio',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                bio,
-                style: TextStyle(fontSize: 16, height: 1.4),
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Color.fromRGBO(59, 148, 94, 1.0),
-                shape: StadiumBorder(),
-                onPrimary: Colors.white,
-                padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-              ),
-              child: Text(
-                "Edit Profil",
-                style: TextStyle(color: Colors.white),
-              ),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => EditProfilePage()),
-                );
-              }),
-        )
-      ],
-    ));
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Color.fromRGBO(59, 148, 94, 1.0),
+                    shape: StadiumBorder(),
+                    onPrimary: Colors.white,
+                    padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                  ),
+                  child: Text(
+                    "Edit Profil",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                          builder: (context) => EditProfilePage()),
+                    );
+                  }),
+            )
+          ],
+        ));
   }
 }
