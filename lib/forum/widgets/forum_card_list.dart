@@ -35,11 +35,6 @@ class _CardListState extends State<CardList> {
             );
           }
 
-          // return ListView(
-          //   children: snapshot.data!.map<Widget>((forum) {
-          //     return CardItem(forum: forum, username: widget.username);
-          //   }).toList(),
-          // );
           return ListView.builder(
             shrinkWrap: true,
             itemCount: snapshot.data!.length,
