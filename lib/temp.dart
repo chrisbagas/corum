@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class temp extends StatelessWidget {
-  const temp({Key? key}) : super(key: key);
+class Temp extends StatelessWidget {
+  const Temp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("temp"),
+        title: const Text("temp"),
         backgroundColor: Colors.greenAccent.shade200,
       ),
-      body: Text("temp"),
+      body: const Text("temp"),
     );
   }
 }

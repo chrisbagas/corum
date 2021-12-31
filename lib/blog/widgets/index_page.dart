@@ -22,6 +22,14 @@ class _IndexPageState extends State<IndexPage> {
     final _request = context.watch<ConnectNetworkService>();
     return Scaffold(
       appBar: AppBar(
+        title: const Text('Blog'),
+        backgroundColor: Colors.greenAccent.shade200,
+        titleTextStyle: const TextStyle(
+          color: Color(0xFFE6F8F2),
+          fontSize: 18,
+          fontFamily: 'Lato',
+          fontWeight: FontWeight.w500,
+        ),
         //systemOverlayStyle: const SystemUiOverlayStyle(
         //  statusBarColor: Color(0x00000000),
         //  systemNavigationBarColor: Color(0xFF000000),

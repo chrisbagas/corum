@@ -2,6 +2,8 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:corum/forum/screens/forum_home_page.dart';
+
 import 'api/GetCookies.dart';
 import 'authentication/login_page.dart';
 import 'authentication/signup_page.dart';
@@ -37,7 +39,7 @@ class MyApp extends StatelessWidget {
         routes: {
           SignUpPage.routeName: (ctx) => const SignUpPage(),
           LoginScreen.routeName: (ctx) => const LoginScreen(),
-          MyHomePage.routeName: (ctx) => MyHomePage(title: appTitle)
+          MyHomePage.routeName: (ctx) => const MyHomePage(title: appTitle)
         },
         debugShowCheckedModeBanner: false,
       ),
@@ -46,7 +48,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
   static const routeName = '/home';
   final String title;
   @override
@@ -56,34 +58,34 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int index = 0;
   final screens = [
-    temp(),
-    Body(),
-    temp(),
-    Blog(),
-    SurveyMainPage(),
+    const Temp(),
+    const Body(),
+    const ForumHome(),
+    const Blog(),
+    const SurveyMainPage(),
     ProfilePage(),
   ];
   @override
   Widget build(BuildContext context) {
     final items = <Widget>[
-      Icon(Icons.home, size: 30),
-      Icon(Icons.event, size: 30),
-      Icon(Icons.forum, size: 30),
-      Icon(Icons.web, size: 30),
-      Icon(Icons.how_to_vote, size: 30),
-      Icon(Icons.person, size: 30),
+      const Icon(Icons.home, size: 30),
+      const Icon(Icons.event, size: 30),
+      const Icon(Icons.forum, size: 30),
+      const Icon(Icons.web, size: 30),
+      const Icon(Icons.how_to_vote, size: 30),
+      const Icon(Icons.person, size: 30),
     ];
     return Scaffold(
         extendBody: true,
         body: screens[index],
         bottomNavigationBar: Theme(
           data: Theme.of(context)
-              .copyWith(iconTheme: IconThemeData(color: Colors.white)),
+              .copyWith(iconTheme: const IconThemeData(color: Colors.white)),
           child: CurvedNavigationBar(
               color: Colors.greenAccent.shade200,
               backgroundColor: Colors.transparent,
               animationCurve: Curves.easeInOut,
-              animationDuration: Duration(microseconds: 500),
+              animationDuration: const Duration(microseconds: 500),
               height: 60,
               onTap: (index) => setState(() => this.index = index),
               items: items),

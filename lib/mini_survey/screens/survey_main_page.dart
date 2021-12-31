@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 
 import './survey_create_page.dart';
+import '../models/survey.dart';
 import '../widgets/search.dart';
+import '../widgets/survey_cards.dart';
 
 class SurveyMainPage extends StatefulWidget {
   static const routeName = '/mini-survey';
@@ -13,6 +14,7 @@ class SurveyMainPage extends StatefulWidget {
 }
 
 class _SurveyMainPageState extends State<SurveyMainPage> {
+  Future<List<Survey>> surveys = fetchSurveys();
 
   Widget buildHeader() {
     return Container(
@@ -87,7 +89,7 @@ class _SurveyMainPageState extends State<SurveyMainPage> {
                 MaterialPageRoute(builder: (context) => SurveyCreatePage())
               );
             }, 
-            child: Text('Create New Survey')
+            child: const Text('Create New Survey')
           ),
         )
       ],
@@ -99,7 +101,7 @@ class _SurveyMainPageState extends State<SurveyMainPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Mini Survey'),
-        backgroundColor: Colors.greenAccent.shade200,
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -110,6 +112,7 @@ class _SurveyMainPageState extends State<SurveyMainPage> {
             ),
             buildContentHeader(),
             buildSearchBar(),
+            SurveyCards(surveys: surveys)
           ],
         ),
       ),
