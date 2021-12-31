@@ -74,42 +74,6 @@ class _CardHeaderState extends State<CardHeader> {
   }
 
   Widget _buildExpanded(BuildContext context) {
-    List<Widget> l = [];
-
-    // int temp = 1;
-
-    // for (String iconUrl in iconUrls) {
-    //   l.add(
-    //     AnimatedContainer(
-    //       duration: Duration(milliseconds: 180 * temp),
-    //       child: AnimatedOpacity(
-    //         duration: Duration(milliseconds: 180 * temp++),
-    //         opacity: _isExpanded ? 1 : 0,
-    //         child: RiveIcon(iconUrl: iconUrl),
-    //       ),
-    //     ),
-    //   );
-    // }
-
-    // l.add(
-    //   AnimatedOpacity(
-    //     duration: const Duration(milliseconds: 180),
-    //     opacity: _isExpanded ? 1 : 0,
-    //     child: IconButton(
-    //       onPressed: () {
-    //         setState(() {
-    //           toggleExpand();
-    //         });
-    //       },
-    //       icon: const Icon(
-    //         Icons.linear_scale_rounded,
-    //         size: 20,
-    //         color: Colors.white,
-    //       ),
-    //     ),
-    //   ),
-    // );
-
     final DeleteModal _deleteModal = DeleteModal(slug: widget.post.slug);
     final EditForm _editForm = EditForm(post: widget.post);
 
