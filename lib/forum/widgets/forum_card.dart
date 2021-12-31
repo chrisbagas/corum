@@ -108,8 +108,7 @@ class _CardItemState extends State<CardItem> {
                             child: TextButton(
                               onPressed: () {
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                      content: Text('Coming soon\n')),
+                                  const SnackBar(content: Text('Coming soon')),
                                 );
                               },
                               child: const Icon(

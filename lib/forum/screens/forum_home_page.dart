@@ -23,7 +23,7 @@ class _ForumHomeState extends State<ForumHome> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Forum: " + request.username.toString()),
+        title: const Text("Forum"),
         backgroundColor: Colors.greenAccent.shade200,
       ),
       body: Padding(

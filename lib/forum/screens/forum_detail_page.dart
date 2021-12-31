@@ -31,46 +31,53 @@ class _ForumDetailPageState extends State<ForumDetailPage> {
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 18),
-                child: Text(
-                  widget.forum.title,
-                  style: Theme.of(context).textTheme.headline3,
-                  textAlign: TextAlign.left,
-                  softWrap: true,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Text(
+                    widget.forum.title,
+                    style: Theme.of(context).textTheme.headline3,
+                    textAlign: TextAlign.left,
+                    softWrap: true,
+                  ),
                 ),
-              ),
-              Card(
-                margin: const EdgeInsets.symmetric(horizontal: 18),
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 15.0),
-                      child: CircleAvatar(
-                        child: Text(
-                          widget.forum.authorUsername[0]
-                              .toString()
-                              .toUpperCase(),
+                Card(
+                  child: Row(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 15.0),
+                        child: CircleAvatar(
+                          child: Text(
+                            widget.forum.authorUsername[0]
+                                .toString()
+                                .toUpperCase(),
+                          ),
                         ),
                       ),
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      Column(
                         children: [
-                          Container(
-                            margin: const EdgeInsets.only(top: 5.0),
-                            child: Text(
-                              'posted by ${widget.forum.authorUsername.toString().toUpperCase()} - ${timeago.format(widget.forum.modifiedTime)}',
-                              style: Theme.of(context).textTheme.subtitle2,
-                            ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                widget.forum.authorUsername
+                                    .toString()
+                                    .toUpperCase(),
+                                style: Theme.of(context).textTheme.subtitle2,
+                              ),
+                              Text(
+                                timeago.format(widget.forum.modifiedTime),
+                                style: Theme.of(context).textTheme.subtitle2,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            width: double.infinity,
                           ),
                           Text(
                             widget.forum.body,
@@ -78,37 +85,50 @@ class _ForumDetailPageState extends State<ForumDetailPage> {
                           ),
                         ],
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 5, horizontal: 18),
-                child: TextFormField(
-                  enabled: _request.loggedIn,
-                  style: Theme.of(context).textTheme.subtitle2,
-                  decoration: InputDecoration(
-                    labelText: 'Answer',
-                    hintText: 'Write your answer here',
-                    // border: const OutlineInputBorder(),
-                    suffixIcon: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.send),
-                    ),
+                    ],
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Please enter a valid answer";
-                    }
-                    return null;
-                  },
-                  onSaved: (newValue) {
-                    _body = newValue!;
-                  },
                 ),
-              ),
-            ],
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: const Text("0 Reply"),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: TextFormField(
+                    enabled: _request.loggedIn,
+                    style: Theme.of(context).textTheme.subtitle2,
+                    decoration: InputDecoration(
+                      labelText: 'Answer',
+                      hintText: 'Write your answer here',
+                      // border: const OutlineInputBorder(),
+                      suffixIcon: IconButton(
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Coming soon')),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('An error occured')),
+                            );
+                          }
+                        },
+                        icon: const Icon(Icons.send),
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Please enter a valid answer";
+                      }
+                      return null;
+                    },
+                    onSaved: (newValue) {
+                      _body = newValue!;
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
