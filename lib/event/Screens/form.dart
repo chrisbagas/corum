@@ -106,26 +106,8 @@ class formstate extends State<formstateful> {
                   Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: buildDescription()),
-                  RaisedButton(
-                    child: Text(
-                      "Pick Thumbnail",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    color: Colors.blue,
-                    onPressed: () {
-                      pickImage();
-                    },
-                  ),
-                  RaisedButton(
-                    child: Text(
-                      "Pick Page Image",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    color: Colors.blue,
-                    onPressed: () {
-                      pickImage2();
-                    },
-                  ),
+                  Container(child: buildThumbnail()),
+                  Container(child: buildPageImage()),
                   RaisedButton(
                       child: Text(
                         "Submit",
@@ -135,31 +117,50 @@ class formstate extends State<formstateful> {
                       onPressed: () async {
                         final isValid = _formKey.currentState!.validate();
                         if (isValid) {
-                          _formKey.currentState!.save();
+                          if (image1 != null && image2 != null) {
+                            _formKey.currentState!.save();
 
-                          final String base64file1 =
-                              base64Encode(image1!.readAsBytesSync());
-                          final String fileName1 = image1!.path.split("/").last;
-                          final String base64file2 =
-                              base64Encode(image2!.readAsBytesSync());
-                          final String fileName2 = image2!.path.split("/").last;
-                          final response = await request.post(
-                              "https://corum.herokuapp.com/event/post/",
-                              convert.jsonEncode(<String, String>{
-                                'title': title,
-                                'tanggal': date,
-                                'waktu': time,
-                                'media': media,
-                                'tipe': tipe,
-                                'url': url,
-                                'deskripsi': description,
-                                'file1': base64file1,
-                                'name1': fileName1,
-                                'file2': base64file2,
-                                'name2': fileName2,
-                              }));
-                          if (response['status'] == 'success') {
-                            Navigator.pop(context);
+                            final String base64file1 =
+                                base64Encode(image1!.readAsBytesSync());
+                            final String fileName1 =
+                                image1!.path.split("/").last;
+                            final String base64file2 =
+                                base64Encode(image2!.readAsBytesSync());
+                            final String fileName2 =
+                                image2!.path.split("/").last;
+                            final response = await request.post(
+                                "https://corum.herokuapp.com/event/post/",
+                                convert.jsonEncode(<String, String>{
+                                  'title': title,
+                                  'tanggal': date,
+                                  'waktu': time,
+                                  'media': media,
+                                  'tipe': tipe,
+                                  'url': url,
+                                  'deskripsi': description,
+                                  'file1': base64file1,
+                                  'name1': fileName1,
+                                  'file2': base64file2,
+                                  'name2': fileName2,
+                                }));
+                            if (response['status'] == 'success') {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text("Event Succesfully Save!"),
+                              ));
+                              Navigator.pop(context);
+                            } else {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content:
+                                    Text("An error occured, please try again."),
+                              ));
+                            }
+                          } else {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text("Please Insert Image."),
+                            ));
                           }
                         }
                       }),
@@ -288,4 +289,82 @@ class formstate extends State<formstateful> {
         return null;
       },
       onSaved: (value) => setState(() => description = value!));
+  Widget buildThumbnail() => Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: <Widget>[
+            Text("Thumbnail: ", style: TextStyle(fontSize: 20)),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(20),
+                onTap: () {
+                  pickImage();
+                },
+                child: image1 != null
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.file(
+                          File(image1!.path),
+                          fit: BoxFit.scaleDown,
+                        ))
+                    : Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 1,
+                              style: BorderStyle.solid,
+                            ),
+                            borderRadius: BorderRadius.circular(20)),
+                        width: 100,
+                        height: 100,
+                        child: Icon(
+                          Icons.add_photo_alternate_outlined,
+                          color: Colors.grey[800],
+                        ),
+                      ),
+              ),
+            ),
+          ],
+        ),
+      );
+  Widget buildPageImage() => Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: <Widget>[
+            Text("Page Image:", style: TextStyle(fontSize: 20)),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(20),
+                onTap: () {
+                  pickImage2();
+                },
+                child: image2 != null
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.file(
+                          File(image2!.path),
+                          fit: BoxFit.scaleDown,
+                        ))
+                    : Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 1,
+                              style: BorderStyle.solid,
+                            ),
+                            borderRadius: BorderRadius.circular(20)),
+                        width: 100,
+                        height: 100,
+                        child: Icon(
+                          Icons.add_photo_alternate_outlined,
+                          color: Colors.grey[800],
+                        ),
+                      ),
+              ),
+            ),
+          ],
+        ),
+      );
 }

@@ -107,24 +107,44 @@ class _CardlistState extends State<Cardlist> {
                               )),
                           Padding(
                               padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                              child: Text(snapshot.data![index].date,
-                                  style: TextStyle(fontSize: 20),
-                                  textAlign: TextAlign.start)),
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.calendar_today_outlined),
+                                    Text(snapshot.data![index].date,
+                                        style: TextStyle(fontSize: 20),
+                                        textAlign: TextAlign.start)
+                                  ])),
                           Padding(
                               padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                              child: Text(snapshot.data![index].time,
-                                  style: TextStyle(fontSize: 20),
-                                  textAlign: TextAlign.start)),
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.access_time_outlined),
+                                    Text(snapshot.data![index].time,
+                                        style: TextStyle(fontSize: 20),
+                                        textAlign: TextAlign.start)
+                                  ])),
                           Padding(
                               padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                              child: Text(snapshot.data![index].media,
-                                  style: TextStyle(fontSize: 20),
-                                  textAlign: TextAlign.start)),
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.video_camera_front_outlined),
+                                    Text(snapshot.data![index].media,
+                                        style: TextStyle(fontSize: 20),
+                                        textAlign: TextAlign.start)
+                                  ])),
                           Padding(
                               padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                              child: Text(snapshot.data![index].tipe,
-                                  style: TextStyle(fontSize: 20),
-                                  textAlign: TextAlign.start)),
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.chat_bubble_outline),
+                                    Text(snapshot.data![index].tipe,
+                                        style: TextStyle(fontSize: 20),
+                                        textAlign: TextAlign.start)
+                                  ])),
                         ],
                       ),
                     ),
