@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 import 'widgets/profilepicture_widget.dart';
-import 'edit_profile.dart';
+import 'edit_profile2.dart';
 import 'package:corum/api/GetCookies.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -33,12 +33,13 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     final request = context.watch<ConnectNetworkService>();
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text("Profil"),
           automaticallyImplyLeading: false,
           backgroundColor: Colors.greenAccent.shade200,
         ),
-        body: ListView(padding: const EdgeInsets.all(12.0), children: <Widget>[
+        body: ListView(children: <Widget>[
           FutureBuilder(
             future: fetchData(request),
             builder: (context, snapshot) {
@@ -68,8 +69,9 @@ class ItemList extends StatelessWidget {
     String email = list['profile'][0]['fields']['email'].toString();
     String username = list['profile'][0]['fields']['username'].toString();
     String bio = list['profile'][1]['fields']['bio'].toString();
-    String imagePath = 'https://corumbucket.s3.amazonaws.com/' +
-        list['profile'][1]['fields']['image'].toString();
+    String imagePath =
+        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png';
+
     return SizedBox(
         height: MediaQuery.of(context).size.height * 0.6,
         child: ListView(
@@ -81,7 +83,7 @@ class ItemList extends StatelessWidget {
               ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 48),
+              padding: EdgeInsets.symmetric(horizontal: 30),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -92,13 +94,13 @@ class ItemList extends StatelessWidget {
                   const SizedBox(height: 5),
                   Text(
                     firstName,
-                    style: TextStyle(fontSize: 16, height: 1.4),
+                    style: TextStyle(fontSize: 16, height: 2),
                   ),
                 ],
               ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 48),
+              padding: EdgeInsets.symmetric(horizontal: 30),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -109,13 +111,13 @@ class ItemList extends StatelessWidget {
                   const SizedBox(height: 5),
                   Text(
                     lastName,
-                    style: TextStyle(fontSize: 16, height: 1.4),
+                    style: TextStyle(fontSize: 16, height: 2),
                   ),
                 ],
               ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 48),
+              padding: EdgeInsets.symmetric(horizontal: 30),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -126,13 +128,13 @@ class ItemList extends StatelessWidget {
                   const SizedBox(height: 5),
                   Text(
                     username,
-                    style: TextStyle(fontSize: 16, height: 1.4),
+                    style: TextStyle(fontSize: 16, height: 2),
                   ),
                 ],
               ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 48),
+              padding: EdgeInsets.symmetric(horizontal: 30),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -149,7 +151,7 @@ class ItemList extends StatelessWidget {
               ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 48),
+              padding: EdgeInsets.symmetric(horizontal: 30),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -169,6 +171,7 @@ class ItemList extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(100, 30),
                     primary: Color.fromRGBO(59, 148, 94, 1.0),
                     shape: StadiumBorder(),
                     onPrimary: Colors.white,
@@ -181,7 +184,7 @@ class ItemList extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                          builder: (context) => EditProfilePage()),
+                          builder: (context) => EditProfilePageNoPic()),
                     );
                   }),
             )
