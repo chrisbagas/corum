@@ -5,9 +5,13 @@ class RiveIcon extends StatefulWidget {
   const RiveIcon({
     Key? key,
     required this.iconUrl,
+    required this.widgetDest,
+    required this.isModal,
   }) : super(key: key);
 
   final String iconUrl;
+  final Widget widgetDest;
+  final bool isModal;
 
   @override
   _AnimatedIconState createState() => _AnimatedIconState();
@@ -31,7 +35,8 @@ class _AnimatedIconState extends State<RiveIcon> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 48,
+      margin: const EdgeInsets.fromLTRB(14, 10, 0, 10),
+      height: 28,
       child: Container(
         child: _buildIcon(),
       ),
@@ -40,11 +45,30 @@ class _AnimatedIconState extends State<RiveIcon> {
 
   Widget _buildIcon() {
     return GestureDetector(
-      onTap: () => _active ? null : _animationController.isActive = true,
+      // TODO refresh page if possible
+      onTap: () async {
+        _active ? null : _animationController.isActive = true;
+        if (widget.isModal) {
+          if (await showDialog<bool>(
+                context: context,
+                builder: (BuildContext context) {
+                  return widget.widgetDest;
+                },
+              ) ==
+              true) {
+            setState(() {});
+          }
+        } else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => widget.widgetDest),
+          );
+        }
+      },
       child: AspectRatio(
         aspectRatio: 1,
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 7),
+          padding: const EdgeInsets.symmetric(vertical: 0),
           child: RiveAnimation.asset(
             widget.iconUrl,
             animations: const ['run'],

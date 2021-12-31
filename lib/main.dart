@@ -11,6 +11,7 @@ import 'package:corum/forum/screens/forum_home_page.dart';
 import 'authentication/starting_page.dart';
 import 'blog/blog.dart';
 import 'event/Screens/body_home.dart';
+import 'profile dashboard/profile.dart';
 import 'temp.dart';
 
 void main() => runApp(const MyApp());
@@ -58,10 +59,10 @@ class _MyHomePageState extends State<MyHomePage> {
   final screens = [
     const Temp(),
     const Body(),
-    const ForumHome(),
-    const blog(),
     const Temp(),
+    const Blog(),
     const Temp(),
+    ProfilePage(),
   ];
   @override
   Widget build(BuildContext context) {

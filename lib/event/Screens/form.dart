@@ -92,6 +92,8 @@ class formstate extends State<formstateful> {
               Padding(padding: const EdgeInsets.all(8.0), child: buildDate()),
               Padding(padding: const EdgeInsets.all(8.0), child: buildTime()),
               Padding(padding: const EdgeInsets.all(8.0), child: buildMedia()),
+              Padding(padding: const EdgeInsets.all(8.0), child: buildTipe()),
+              Padding(padding: const EdgeInsets.all(8.0), child: buildUrl()),
               Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: buildDescription()),
@@ -133,14 +135,14 @@ class formstate extends State<formstateful> {
                           base64Encode(image2!.readAsBytesSync());
                       final String fileName2 = image2!.path.split("/").last;
                       final response = await request.post(
-                          "https://corum.herokuapp.com/event/post",
+                          "https://corum.herokuapp.com/event/post/",
                           convert.jsonEncode(<String, String>{
                             'title': title,
                             'tanggal': date,
                             'waktu': time,
                             'media': media,
                             'tipe': tipe,
-                            'Url': url,
+                            'url': url,
                             'deskripsi': description,
                             'file1': base64file1,
                             'name1': fileName1,
@@ -229,6 +231,38 @@ class formstate extends State<formstateful> {
         return null;
       },
       onSaved: (value) => setState(() => media = value!));
+  Widget buildTipe() => TextFormField(
+      decoration: new InputDecoration(
+        labelText: "Tipe",
+        icon: Icon(Icons.chat_bubble_outline),
+        border:
+            OutlineInputBorder(borderRadius: new BorderRadius.circular(5.0)),
+      ),
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'Tipe tidak boleh kosong';
+        }
+        return null;
+      },
+      onSaved: (value) => setState(() => tipe = value!));
+  Widget buildUrl() => TextFormField(
+      decoration: new InputDecoration(
+        labelText: "URL",
+        icon: Icon(Icons.link),
+        border:
+            OutlineInputBorder(borderRadius: new BorderRadius.circular(5.0)),
+      ),
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'URL tidak boleh kosong';
+        }
+        bool _validURL = Uri.parse(value).isAbsolute;
+        if (!_validURL) {
+          return 'URL tidak valid';
+        }
+        return null;
+      },
+      onSaved: (value) => setState(() => url = value!));
   Widget buildDescription() => TextFormField(
       decoration: new InputDecoration(
         labelText: "Description",
@@ -236,6 +270,8 @@ class formstate extends State<formstateful> {
         border:
             OutlineInputBorder(borderRadius: new BorderRadius.circular(5.0)),
       ),
+      keyboardType: TextInputType.multiline,
+      maxLines: null,
       validator: (value) {
         if (value!.isEmpty) {
           return 'Description tidak boleh kosong';

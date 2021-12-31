@@ -5,14 +5,21 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:corum/api/GetCookies.dart';
 
-class PostForm extends StatefulWidget {
-  const PostForm({Key? key}) : super(key: key);
+import '../models/post.dart';
+
+class EditForm extends StatefulWidget {
+  const EditForm({
+    Key? key,
+    required this.post,
+  }) : super(key: key);
+
+  final Post post;
 
   @override
-  State<PostForm> createState() => _PostFormState();
+  State<EditForm> createState() => _EditFormState();
 }
 
-class _PostFormState extends State<PostForm> {
+class _EditFormState extends State<EditForm> {
   final _key = GlobalKey<FormState>();
   String _title = '';
   String _subtitle = '';
@@ -20,7 +27,6 @@ class _PostFormState extends State<PostForm> {
 
   final ImagePicker _picker = ImagePicker();
   XFile? _thumbnail;
-  bool _showThumbnailMessage = false;
   bool _showProgress = false;
 
   _getImageFromCamera(ImageSource src) async {
@@ -44,7 +50,7 @@ class _PostFormState extends State<PostForm> {
           fontFamily: 'Lato',
           fontWeight: FontWeight.w500,
         ),
-        title: const Text('Add a blog post'),
+        title: const Text('Edit your blog post'),
         bottom: _showProgress
             ? const PreferredSize(
                 preferredSize: Size(4, 4),
@@ -66,6 +72,7 @@ class _PostFormState extends State<PostForm> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: TextFormField(
+                    initialValue: widget.post.title,
                     enabled: !_showProgress,
                     style: Theme.of(context).textTheme.subtitle1,
                     decoration: const InputDecoration(
@@ -86,6 +93,7 @@ class _PostFormState extends State<PostForm> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: TextFormField(
+                    initialValue: widget.post.subtitle,
                     enabled: !_showProgress,
                     style: const TextStyle(
                       color: Color(0xFFF2F8F2),
@@ -156,23 +164,12 @@ class _PostFormState extends State<PostForm> {
                                     File(_thumbnail!.path),
                                     fit: BoxFit.scaleDown,
                                   ))
-                              : Container(
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: _showThumbnailMessage
-                                            ? Colors.red
-                                            : const Color(0xFF2C2E3D),
-                                        width: 1,
-                                        style: BorderStyle.solid,
-                                      ),
-                                      borderRadius: BorderRadius.circular(20)),
-                                  width: 100,
-                                  height: 100,
-                                  child: Icon(
-                                    Icons.add_photo_alternate_outlined,
-                                    color: Colors.grey[800],
-                                  ),
-                                ),
+                              : ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Image.network(
+                                    widget.post.thumbnailUrl,
+                                    fit: BoxFit.scaleDown,
+                                  )),
                         ),
                       ),
                       Align(
@@ -202,6 +199,7 @@ class _PostFormState extends State<PostForm> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: TextFormField(
+                    initialValue: widget.post.bodyText,
                     enabled: !_showProgress,
                     maxLines: 12,
                     style: const TextStyle(
@@ -225,12 +223,7 @@ class _PostFormState extends State<PostForm> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    if (_thumbnail == null) {
-                      setState(() {
-                        _showThumbnailMessage = true;
-                      });
-                    }
-                    if (_key.currentState!.validate() && _thumbnail != null) {
+                    if (_key.currentState!.validate()) {
                       setState(() {
                         _showProgress = true;
                       });
@@ -240,15 +233,22 @@ class _PostFormState extends State<PostForm> {
                         'subtitle': _subtitle,
                         'body': _body,
                       };
-                      await _request.postMultipart(
-                          'https://corum.herokuapp.com/blog/add-post/',
+                      if (_thumbnail == null) {
+                        await _request.post(
+                          'https://corum.herokuapp.com/blog/${widget.post.slug}/edit-post/',
                           _data,
-                          _thumbnail!.path);
-
+                        );
+                      } else {
+                        await _request.postMultipart(
+                          'https://corum.herokuapp.com/blog/${widget.post.slug}/edit-post/',
+                          _data,
+                          _thumbnail!.path,
+                        );
+                      }
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                             content: Text(
-                                'Your post was created successfully!\n\n\n\n')),
+                                'Your post was edited successfully!\n\n\n\n')),
                       );
 
                       setState(() {

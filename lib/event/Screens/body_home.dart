@@ -5,7 +5,6 @@ import 'package:corum/event/Screens/form.dart';
 import 'package:corum/event/models/events.dart';
 import 'dart:async';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -15,7 +14,7 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  final event = fetchPosts();
+  Future<List<Events>> event = fetchPosts();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,17 +23,21 @@ class _BodyState extends State<Body> {
           backgroundColor: Colors.greenAccent.shade200,
           actions: [
             IconButton(
-              onPressed: () {
-                Navigator.push(
+              onPressed: () async {
+                await Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => formstateful()),
                 );
+                setState(() {
+                  event = fetchPosts();
+                });
               },
               icon: const Icon(Icons.add_sharp),
             ),
           ],
         ),
         resizeToAvoidBottomInset: false, // set it to false
-        body: SingleChildScrollView(child: Cardlist(event: event)));
+        body: Center(
+            child: SingleChildScrollView(child: Cardlist(event: event))));
   }
 }
