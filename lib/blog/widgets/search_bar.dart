@@ -15,8 +15,9 @@ class SearchPost extends SearchDelegate<Post> {
   @override
   ThemeData appBarTheme(BuildContext context) {
     return Theme.of(context).copyWith(
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         titleSpacing: 2,
+        color: Colors.greenAccent.shade200,
       ),
       inputDecorationTheme: InputDecorationTheme(
         fillColor: const Color(0xe0F2F8F2),
@@ -246,12 +247,12 @@ class SearchPost extends SearchDelegate<Post> {
   @override
   PreferredSizeWidget? buildBottom(BuildContext context) {
     return PreferredSize(
-      preferredSize: const Size.fromHeight(72),
+      preferredSize: const Size.fromHeight(90),
       child: StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
           return Container(
             alignment: Alignment.centerLeft,
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
             child: Column(
               children: [
                 Container(
