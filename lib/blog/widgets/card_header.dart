@@ -10,8 +10,8 @@ import '../models/post.dart';
 const prefixUrl = 'assets/graphics';
 
 const iconUrls = [
-  '$prefixUrl/trash_bin_white.riv',
-  '$prefixUrl/pencil_white.riv',
+  '$prefixUrl/trash_bin_black.riv',
+  '$prefixUrl/pencil_black.riv',
 ];
 
 class CardHeader extends StatefulWidget {
@@ -64,7 +64,7 @@ class _CardHeaderState extends State<CardHeader> {
                   },
                   icon: const Icon(
                     Icons.more_horiz_rounded,
-                    color: Color(0xFFF2F8F2),
+                    color: Color(0xFF080405),
                   ),
                 ),
               )
@@ -80,13 +80,14 @@ class _CardHeaderState extends State<CardHeader> {
     return IgnorePointer(
       ignoring: !_isExpanded,
       child: Padding(
-        padding: const EdgeInsets.only(left: 10, right: 0, bottom: 4, top: 8),
+        padding: const EdgeInsets.only(left: 10, right: 0, bottom: 4, top: 4),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 180),
@@ -124,7 +125,7 @@ class _CardHeaderState extends State<CardHeader> {
                     icon: const Icon(
                       Icons.linear_scale_rounded,
                       size: 20,
-                      color: Color(0xFFF2F8F2),
+                      color: Color(0xFF080405),
                     ),
                   ),
                 ),

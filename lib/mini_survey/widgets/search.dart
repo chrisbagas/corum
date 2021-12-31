@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 Widget buildSearchBar() {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 18.0, vertical: 10.0),
+      margin: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 10.0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
@@ -19,7 +19,7 @@ Widget buildSearchBar() {
                   color: Colors.green[900],
                 ),
                 isDense: true,
-                contentPadding: EdgeInsets.all(0),
+                contentPadding: const EdgeInsets.all(0),
               ),
               textAlignVertical: TextAlignVertical.center,
             ),

@@ -85,7 +85,7 @@ class CardItem extends StatelessWidget {
           ),
         ),
         const Divider(
-          color: Color(0xFF2C2E3D),
+          color: Color(0x802C2E3D),
           height: 0,
         ),
       ],

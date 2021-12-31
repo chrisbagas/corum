@@ -227,7 +227,7 @@ class SearchPost extends SearchDelegate<Post> {
                         },
                       ),
                       const Divider(
-                        color: Color(0xFF2C2E3D),
+                        color: Color(0x802C2E3D),
                         height: 0,
                       ),
                     ],
@@ -268,6 +268,7 @@ class SearchPost extends SearchDelegate<Post> {
                 ),
                 Container(
                   alignment: Alignment.centerLeft,
+                  padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Wrap(
                     crossAxisAlignment: WrapCrossAlignment.start,
                     children: <Widget>[
@@ -279,7 +280,7 @@ class SearchPost extends SearchDelegate<Post> {
                           shape: const StadiumBorder(
                             side: BorderSide(
                               width: 1,
-                              color: Colors.black38,
+                              color: Colors.black26,
                             ),
                           ),
                           label: Text(
@@ -302,7 +303,7 @@ class SearchPost extends SearchDelegate<Post> {
                           shape: const StadiumBorder(
                             side: BorderSide(
                               width: 1,
-                              color: Colors.black38,
+                              color: Colors.black26,
                             ),
                           ),
                           label: Text(

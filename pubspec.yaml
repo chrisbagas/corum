@@ -84,6 +84,8 @@ flutter:
     - assets/graphics/trash_bin.riv
     - assets/graphics/pencil_white.riv
     - assets/graphics/trash_bin_white.riv
+    - assets/graphics/pencil_black.riv
+    - assets/graphics/trash_bin_black.riv
     - assets/fonts/lato/
     - assets/fonts/playfair_display/
     - assets/fonts/kite_one/
