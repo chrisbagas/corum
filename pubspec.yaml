@@ -128,12 +128,12 @@ flutter:
         - asset: assets/fonts/lato/Lato-ThinItalic.ttf
     - family: Playfair Display
       fonts:
-        - asset: assets/fonts/playfair_display/PlayfairDIsplay-Black.ttf
-        - asset: assets/fonts/playfair_display/PlayfairDIsplay-BlackItalic.ttf
-        - asset: assets/fonts/playfair_display/PlayfairDIsplay-Bold.ttf
-        - asset: assets/fonts/playfair_display/PlayfairDIsplay-BoldItalic.ttf
-        - asset: assets/fonts/playfair_display/PlayfairDIsplay-Italic.ttf
-        - asset: assets/fonts/playfair_display/PlayfairDIsplay-Regular.ttf
+        - asset: assets/fonts/playfair_display/PlayfairDisplay-Black.ttf
+        - asset: assets/fonts/playfair_display/PlayfairDisplay-BlackItalic.ttf
+        - asset: assets/fonts/playfair_display/PlayfairDisplay-Bold.ttf
+        - asset: assets/fonts/playfair_display/PlayfairDisplay-BoldItalic.ttf
+        - asset: assets/fonts/playfair_display/PlayfairDisplay-Italic.ttf
+        - asset: assets/fonts/playfair_display/PlayfairDisplay-Regular.ttf
     - family: Kite One
       fonts:
         - asset: assets/fonts/kite_one/KiteOne-Regular.ttf
