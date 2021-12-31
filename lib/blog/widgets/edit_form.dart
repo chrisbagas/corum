@@ -234,7 +234,7 @@ class _EditFormState extends State<EditForm> {
                         'body': _body,
                       };
                       if (_thumbnail == null) {
-                        await _request.post(
+                        await _request.postHtml(
                           'https://corum.herokuapp.com/blog/${widget.post.slug}/edit-post/',
                           _data,
                         );

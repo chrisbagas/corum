@@ -25,7 +25,7 @@ class _DeleteModalState extends State<DeleteModal> {
       actions: <Widget>[
         TextButton(
           onPressed: () async {
-            await _request.post(
+            await _request.postHtml(
               'https://corum.herokuapp.com/blog/${widget.slug}/delete-post/',
               null,
             );
