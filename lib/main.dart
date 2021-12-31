@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: appTitle,
         theme: ThemeData(
-            primaryColor: Color(0xff4FE8B4),
+            primaryColor: Colors.greenAccent.shade200,
             secondaryHeaderColor: const Color.fromRGBO(101, 204, 184, 1),
             primarySwatch: Colors.green,
             fontFamily: 'Poppins'),
