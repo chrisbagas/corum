@@ -63,7 +63,7 @@ class ConnectNetworkService {
     http.Response response =
         await _client.get(Uri.parse(url), headers: headers);
     _updateCookie(response);
-    return response.toString();
+    return json.decode(response.body); // Expects and returns JSON request body
   }
 
   Future<dynamic> post(String url, dynamic data) async {
@@ -74,7 +74,7 @@ class ConnectNetworkService {
     http.Response response =
         await _client.post(Uri.parse(url), body: data, headers: headers);
     _updateCookie(response);
-    return response.toString();
+    return json.decode(response.body);
   }
 
   Future<dynamic> postJson(String url, dynamic data) async {
@@ -89,7 +89,7 @@ class ConnectNetworkService {
     // Remove used additional header
     headers.remove('Content-Type');
     _updateCookie(response);
-    return response.toString();
+    return json.decode(response.body);
   }
 
   Future<dynamic> postMultipart(

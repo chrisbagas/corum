@@ -220,7 +220,7 @@ class formstate extends State<formstateful> {
   Widget buildMedia() => TextFormField(
       decoration: new InputDecoration(
         labelText: "Media",
-        icon: Icon(Icons.tv),
+        icon: Icon(Icons.video_camera_front_outlined),
         border:
             OutlineInputBorder(borderRadius: new BorderRadius.circular(5.0)),
       ),
