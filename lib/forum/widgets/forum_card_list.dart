@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:corum/forum/widgets/forum_card.dart';
-
-// import '../models/forum_model.dart';
-// import 'package:corum/forum/models/forum_model_alt.dart';
 import 'package:corum/forum/models/forum_model.dart';
 
 class CardList extends StatefulWidget {

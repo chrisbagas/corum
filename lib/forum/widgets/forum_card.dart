@@ -1,5 +1,5 @@
 import 'package:corum/forum/screens/forum_home_page.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:corum/main.dart';
 import 'package:flutter/material.dart';
 import 'package:corum/forum/screens/forum_detail_page.dart';
 import 'package:provider/provider.dart';
@@ -89,6 +89,12 @@ class _CardItemState extends State<CardItem> {
                             width: 38,
                             child: TextButton(
                               onPressed: () async {
+                                Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const ForumHome()))
+                                    .then((value) => Navigator.pop(context));
                                 await _request.postHtml(
                                     "http://corum.herokuapp.com/forum/${widget.forum.pk}/delete",
                                     null);
@@ -96,11 +102,6 @@ class _CardItemState extends State<CardItem> {
                                   const SnackBar(
                                       content: Text('Forum deleted')),
                                 );
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const ForumHome()));
                               },
                               child: const Icon(
                                 Icons.delete,
