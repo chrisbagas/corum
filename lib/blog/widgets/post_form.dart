@@ -38,6 +38,7 @@ class _PostFormState extends State<PostForm> {
     final _request = context.watch<ConnectNetworkService>();
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.greenAccent.shade200,
         titleTextStyle: const TextStyle(
           color: Color(0xFFE6F8F2),
           fontSize: 18,
@@ -87,9 +88,7 @@ class _PostFormState extends State<PostForm> {
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: TextFormField(
                     enabled: !_showProgress,
-                    style: const TextStyle(
-                      color: Color(0xFFF2F8F2),
-                    ),
+                    style: Theme.of(context).textTheme.subtitle1,
                     decoration: const InputDecoration(
                       labelText: 'Subtitle',
                       hintText:
@@ -160,7 +159,7 @@ class _PostFormState extends State<PostForm> {
                                   decoration: BoxDecoration(
                                       border: Border.all(
                                         color: _showThumbnailMessage
-                                            ? Colors.red
+                                            ? const Color(0xFFB00020)
                                             : const Color(0xFF2C2E3D),
                                         width: 1,
                                         style: BorderStyle.solid,
@@ -179,7 +178,7 @@ class _PostFormState extends State<PostForm> {
                         alignment: const Alignment(-0.95, 0),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: const Color(0xFF0F0F17),
+                            color: const Color(0xFFF2EFE8),
                             borderRadius: BorderRadius.circular(8), //
                           ),
                           child: const Padding(
@@ -187,7 +186,7 @@ class _PostFormState extends State<PostForm> {
                             child: Text(
                               'Thumbnail',
                               style: TextStyle(
-                                color: Color(0xFFE6F8F2),
+                                color: Color(0xFF0F0802),
                                 fontSize: 10.5,
                                 fontFamily: 'Lato',
                                 fontWeight: FontWeight.w400,
@@ -204,9 +203,7 @@ class _PostFormState extends State<PostForm> {
                   child: TextFormField(
                     enabled: !_showProgress,
                     maxLines: 12,
-                    style: const TextStyle(
-                      color: Color(0xFFF2F8F2),
-                    ),
+                    style: Theme.of(context).textTheme.subtitle1,
                     decoration: const InputDecoration(
                       alignLabelWithHint: true,
                       labelText: 'Body',

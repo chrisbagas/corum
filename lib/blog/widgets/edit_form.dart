@@ -44,6 +44,7 @@ class _EditFormState extends State<EditForm> {
     final _request = context.watch<ConnectNetworkService>();
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.greenAccent.shade200,
         titleTextStyle: const TextStyle(
           color: Color(0xFFE6F8F2),
           fontSize: 18,

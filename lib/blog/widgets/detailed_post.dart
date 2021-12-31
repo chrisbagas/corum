@@ -17,6 +17,7 @@ class DetailedPost extends StatelessWidget {
         parse(parse(post.bodyText).body!.text).documentElement!.text;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.greenAccent.shade200,
         titleTextStyle: const TextStyle(
           color: Color(0xFFE6F8F2),
           fontSize: 18,
@@ -91,7 +92,12 @@ class DetailedPost extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 4, bottom: 6),
                           child: Text(
                             'Posted on ${post.datePublished}',
-                            style: Theme.of(context).textTheme.caption,
+                            style: const TextStyle(
+                              color: Color(0xC0E6F8F2),
+                              fontSize: 10,
+                              fontFamily: 'Lato',
+                              fontWeight: FontWeight.normal,
+                            ),
                           ),
                         ),
                       ],
